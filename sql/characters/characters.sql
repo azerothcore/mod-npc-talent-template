@@ -6,16 +6,28 @@ Set @NpcName = "Pick a spec",
 	@NpcDisplayID = 31833,
 	@NpcLevel = 80;
 
-INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `dmgschool`, `BaseAttackTime`, `RangeAttackTime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES 
+INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `dmgschool`, `BaseAttackTime`, `RangeAttackTime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
 (@NpcEntry, @NpcDisplayID, @NpcName, @NpcSubname, @NpcLevel, @NpcLevel, 35, 1, 1, 1.14286, 1, 1, 0, 2000, 2000, 2, 0, 2048, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 50, 50, 1, 0, 0, 1, 0, 0, 'TemplateNPC', 12340);
 
-INSERT INTO `npc_text` (`ID`, `text0_0`, `text0_1`) VALUES 
+INSERT INTO `npc_text` (`ID`, `text0_0`, `text0_1`) VALUES
 (55002, 'Here you can select a character template which will Gear, Gem, Spec, and finish glyphs for your toon instantly.\r\n\r\nSelect your spec:', 'Here you can select a character template which will Gear, Gem, Spec, and finish glyphs for your toon instantly.\r\n\r\nSelect your spec:');
 
-INSERT INTO `command` (`name`, `security`, `help`) VALUES 
-('templatenpc reload', 3, 'Syntax: .templatenpc reload\nType .templatenpc reload to reload Template NPC database changes');
 
-Use characters;
+INSERT INTO `command` (`name`, `security`, `help`) VALUES
+('template reload', 3, 'Syntax: .template reload\nType .template reload to reload Template NPC database changes');
+
+INSERT INTO `command` (`name`, `security`, `help`) VALUES
+('template save alliance', 3, 'Syntax: .template save alliance <spec>\nDumps your current gear and makes it the alliance <spec>s new template.');
+
+INSERT INTO `command` (`name`, `security`, `help`) VALUES
+('template save horde', 3, 'Syntax: .template save horde <spec>\nDumps your current gear and makes it the horde <spec>s new template.');
+
+INSERT INTO `command` (`name`, `security`, `help`) VALUES
+('template save human', 3, 'Syntax: .template save human <spec>\nDumps your current gear and makes it the human <spec>s new template.');
+
+INSERT INTO `command` (`name`, `security`, `help`) VALUES
+('template copy', 3, 'Syntax: .template copy<spec>\nCopies your targets gear onto you.');
+
 
 CREATE TABLE IF NOT EXISTS `template_npc_alliance` (
   `playerClass` varchar(50) NOT NULL,
