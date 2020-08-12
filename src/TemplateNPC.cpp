@@ -14,7 +14,7 @@ TO DO:
 
 // once talents are fully fixed
 // this could get removed or moved into a config prop
-static constexpr bool OMIT_TALENT_AND_GLYPH_TEMPLATING = false;
+static constexpr bool OMIT_TALENT_AND_GLYPH_TEMPLATING = true;
 
 static const std::unordered_set<std::string> knownSpecs = {
     "Discipline", "Holy",        "Shadow",      "Protection", "Retribution", "Fury",         "Arms",         "Arcane",   "Fire",          "Frost",  "Affliction", "Demonology", "Destruction",
