@@ -7,6 +7,8 @@ TO DO:
 ================================================================ */
 
 #include "TemplateNPC.h"
+#include "Player.h"
+#include "ScriptedGossip.h"
 
 void sTemplateNPC::LearnPlateMailSpells(Player* player)
 {
