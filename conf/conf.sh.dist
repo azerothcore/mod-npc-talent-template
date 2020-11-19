@@ -3,20 +3,20 @@
 ## CUSTOM
 
 DB_CHARACTERS_CUSTOM_PATHS+=(
-	$TEMPLATENPC_ROOT"/sql/characters/base"
+	"$TEMPLATENPC_ROOT/sql/characters/base"
 )
 
 DB_WORLD_CUSTOM_PATHS+=(
-    $TEMPLATENPC_ROOT"/sql/world/base"
+    "$TEMPLATENPC_ROOT/sql/world/base"
 )
 
 
 ## UPDATES
 
 # DB_CHARACTERS_UPDATE_PATHS+=(
-#     $TEMPLATENPC_ROOT"/sql/characters/updates/"
+#     "$TEMPLATENPC_ROOT/sql/characters/updates/"
 # )
 
 # DB_WORLD_UPDATE_PATHS+=(
-#     $TEMPLATENPC_ROOT"/sql/world/updates/"
+#     "$TEMPLATENPC_ROOT/sql/world/updates/"
 # )
