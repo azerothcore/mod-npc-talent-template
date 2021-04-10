@@ -1,10 +1,3 @@
-/* =============================================================
-TO DO:
-• Merge human sql template with alliance template
-• As Barbz suggested: Rename to character_template the module 
-    and all related files (to be less confusing and less generic)
-• As Barbz suggested: Scaling system for twink servers
-================================================================ */
 
 #include "TemplateNPC.h"
 #include "Player.h"
@@ -785,123 +778,22 @@ public:
 
         bool OnGossipHello(Player* player, Creature* creature)
         {
-            switch (player->getClass())
-            {
-            case CLASS_PRIEST:
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_wordfortitude:30|t|r Use Discipline Spec", GOSSIP_SENDER_MAIN, 0);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy Spec", GOSSIP_SENDER_MAIN, 1);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_shadow_shadowwordpain:30|t|r Use Shadow Spec", GOSSIP_SENDER_MAIN, 2);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_wordfortitude:30|t|r Use Discipline Spec (Talents Only)", GOSSIP_SENDER_MAIN, 100);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy spec (Talents only)", GOSSIP_SENDER_MAIN, 101);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_shadow_shadowwordpain:30|t|r Use Shadow spec (Talents only)", GOSSIP_SENDER_MAIN, 102);
-                /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);*/
-                break;
-            case CLASS_PALADIN:
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy Spec", GOSSIP_SENDER_MAIN, 3);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_devotionaura:30|t|r Use Protection Spec", GOSSIP_SENDER_MAIN, 4);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_auraoflight:30|t|r Use Retribution Spec", GOSSIP_SENDER_MAIN, 5);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy Spec (Talents Only)", GOSSIP_SENDER_MAIN, 103);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_devotionaura:30|t|r Use Protection Spec (Talents Only)", GOSSIP_SENDER_MAIN, 104);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_auraoflight:30|t|r Use Retribution Spec (Talents Only)", GOSSIP_SENDER_MAIN, 105);
-                /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);*/
-                break;
-            case CLASS_WARRIOR:
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_warrior_innerrage:30|t|r Use Fury Spec", GOSSIP_SENDER_MAIN, 6);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms Spec", GOSSIP_SENDER_MAIN, 7);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_warrior_defensivestance:30|t|r Use Protection Spec", GOSSIP_SENDER_MAIN, 8);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_warrior_innerrage:30|t|r Use Fury Spec (Talents Only)", GOSSIP_SENDER_MAIN, 106);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms Spec (Talents Only)", GOSSIP_SENDER_MAIN, 107);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_warrior_defensivestance:30|t|r Use Protection Spec (Talents Only)", GOSSIP_SENDER_MAIN, 108);
-                /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);*/
-                break;
-            case CLASS_MAGE:
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_magicalsentry:30|t|r Use Arcane Spec", GOSSIP_SENDER_MAIN, 9);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_fire_flamebolt:30|t|r Use Fire Spec", GOSSIP_SENDER_MAIN, 10);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_frost_frostbolt02:30|t|r Use Frost Spec", GOSSIP_SENDER_MAIN, 11);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_holy_magicalsentry:30|t|r Use Arcane Spec (Talents Only)", GOSSIP_SENDER_MAIN, 109);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_fire_flamebolt:30|t|r Use Fire Spec (Talents Only)", GOSSIP_SENDER_MAIN, 110);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_frost_frostbolt02:30|t|r Use Frost Spec (Talents Only)", GOSSIP_SENDER_MAIN, 111);
-                /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);*/
-                break;
-            case CLASS_WARLOCK:
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_shadow_deathcoil:30|t|r Use Affliction Spec", GOSSIP_SENDER_MAIN, 12);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_shadow_metamorphosis:30|t|r Use Demonology Spec", GOSSIP_SENDER_MAIN, 13);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_shadow_rainoffire:30|t|r Use Destruction Spec", GOSSIP_SENDER_MAIN, 14);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_shadow_deathcoil:30|t|r Use Affliction Spec (Talents Only)", GOSSIP_SENDER_MAIN, 112);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_shadow_metamorphosis:30|t|r Use Demonology Spec (Talents Only)", GOSSIP_SENDER_MAIN, 113);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_shadow_rainoffire:30|t|r Use Destruction Spec (Talents Only)", GOSSIP_SENDER_MAIN, 114);
-                /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);*/
-                break;
-            case CLASS_SHAMAN:
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_nature_lightning:30|t|r Use Elemental Spec", GOSSIP_SENDER_MAIN, 15);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_nature_lightningshield:30|t|r Use Enhancement Spec", GOSSIP_SENDER_MAIN, 16);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_nature_magicimmunity:30|t|r Use Restoration Spec", GOSSIP_SENDER_MAIN, 17);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_nature_lightning:30|t|r Use Elemental Spec (Talents Only)", GOSSIP_SENDER_MAIN, 115);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_nature_lightningshield:30|t|r Use Enhancement Spec (Talents Only)", GOSSIP_SENDER_MAIN, 116);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_nature_magicimmunity:30|t|r Use Restoration Spec (Talents Only)", GOSSIP_SENDER_MAIN, 117);
-                /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);*/
-                break;
-            case CLASS_DRUID:
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_nature_starfall:30|t|r Use Ballance Spec", GOSSIP_SENDER_MAIN, 18);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_racial_bearform:30|t|r Use Feral Spec", GOSSIP_SENDER_MAIN, 19);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_nature_healingtouch:30|t|r Use Restoration Spec", GOSSIP_SENDER_MAIN, 20);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_nature_starfall:30|t|r Use Ballance Spec (Talents Only)", GOSSIP_SENDER_MAIN, 118);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_racial_bearform:30|t|r Use Feral Spec (Talents Only)", GOSSIP_SENDER_MAIN, 119);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_nature_healingtouch:30|t|r Use Restoration Spec (Talents Only)", GOSSIP_SENDER_MAIN, 120);
-                /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);*/
-                break;
-            case CLASS_HUNTER:
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_marksmanship:30|t|r Use Marksmanship Spec", GOSSIP_SENDER_MAIN, 21);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_hunter_beasttaming:30|t|r Use Beastmastery Spec", GOSSIP_SENDER_MAIN, 22);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_Hunter_swiftstrike:30|t|r Use Survival Spec", GOSSIP_SENDER_MAIN, 23);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_marksmanship:30|t|r Use Marksmanship Spec (Talents Only)", GOSSIP_SENDER_MAIN, 121);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_hunter_beasttaming:30|t|r Use Beastmastery Spec (Talents Only)", GOSSIP_SENDER_MAIN, 122);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_Hunter_swiftstrike:30|t|r Use Survival Spec (Talents Only)", GOSSIP_SENDER_MAIN, 123);
-                /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);*/
-                break;
-            case CLASS_ROGUE:
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Assasination Spec", GOSSIP_SENDER_MAIN, 24);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_backstab:30|t|r Use Combat Spec", GOSSIP_SENDER_MAIN, 25);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_stealth:30|t|r Use Subtlety Spec", GOSSIP_SENDER_MAIN, 26);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Assasination Spec (Talents Only)", GOSSIP_SENDER_MAIN, 124);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_backstab:30|t|r Use Combat Spec (Talents Only)", GOSSIP_SENDER_MAIN, 125);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_stealth:30|t|r Use Subtlety Spec (Talents Only)", GOSSIP_SENDER_MAIN, 126);
-                /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);*/
-                break;
-            case CLASS_DEATH_KNIGHT:
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_deathknight_bloodpresence:30|t|r Use Blood Spec", GOSSIP_SENDER_MAIN, 27);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_deathknight_frostpresence:30|t|r Use Frost Spec", GOSSIP_SENDER_MAIN, 28);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_deathknight_unholypresence:30|t|r Use Unholy Spec", GOSSIP_SENDER_MAIN, 29);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_deathknight_bloodpresence:30|t|r Use Blood Spec (Talents Only)", GOSSIP_SENDER_MAIN, 127);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_deathknight_frostpresence:30|t|r Use Frost Spec (Talents Only)", GOSSIP_SENDER_MAIN, 128);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\spell_deathknight_unholypresence:30|t|r Use Unholy Spec (Talents Only)", GOSSIP_SENDER_MAIN, 129);
-                /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, 5000);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);*/
-                break;
+            if (player->hasSpanishClient()) {
+                SpanishMenu(player, creature);
+            } else {
+                EnglishMenu(player, creature);
             }
-
-            /*player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Remove all glyphs", GOSSIP_SENDER_MAIN, 30);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Destroy my equipped gear", GOSSIP_SENDER_MAIN, 32);*/
+            /*
+            if (player->hasSpanishClient()) {
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Remover Glifos", GOSSIP_SENDER_MAIN, 30);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Resetear Talentos", GOSSIP_SENDER_MAIN, 31);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Destruir Objetos equipados", GOSSIP_SENDER_MAIN, 32);
+            } else {
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Remove all glyphs", GOSSIP_SENDER_MAIN, 30);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, 31);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Destroy my equipped gear", GOSSIP_SENDER_MAIN, 32);
+            }
+            */
 			player->SEND_GOSSIP_MENU(55002, creature->GetGUID());
             return true;
         }
@@ -910,7 +802,12 @@ public:
         {
             if (sTemplateNpcMgr->CanEquipTemplate(player, playerSpecStr) == false)
             {
-                player->GetSession()->SendAreaTriggerMessage("There's no templates for %s specialization yet.", playerSpecStr.c_str());
+                if (player->hasSpanishClient())
+                {
+                    player->GetSession()->SendAreaTriggerMessage("No hay plantillas para esta especializacion %s .", playerSpecStr.c_str());
+                } else {
+                    player->GetSession()->SendAreaTriggerMessage("There's no templates for %s specialization yet.", playerSpecStr.c_str());
+                }
                 return;
             }
 
@@ -921,7 +818,11 @@ public:
                 {
                     if (haveItemEquipped)
                     {
-                        player->GetSession()->SendAreaTriggerMessage("You need to remove all your equipped items in order to use this feature!");
+                        if (player->hasSpanishClient()) {
+                            player->GetSession()->SendAreaTriggerMessage("Debes remover todos tus objetos equipados antes de usar esta caracteristica!");
+                        } else {
+                            player->GetSession()->SendAreaTriggerMessage("You need to remove all your equipped items in order to use this feature!");
+                        }
 						player->CLOSE_GOSSIP_MENU();
                         return;
                     }
@@ -931,7 +832,11 @@ public:
             // Don't let players to use Template feature after spending some talent points
             if (player->GetFreeTalentPoints() < 71)
             {
-                player->GetSession()->SendAreaTriggerMessage("You have already spent some talent points. You need to reset your talents first!");
+                if (player->hasSpanishClient()) {
+                    player->GetSession()->SendAreaTriggerMessage("Tienes talentos usados, debes resetear todos tus puntos de talento primero!");
+                } else {
+                    player->GetSession()->SendAreaTriggerMessage("You have already spent some talent points. You need to reset your talents first!");
+                }
                 player->CLOSE_GOSSIP_MENU();
                 return;
             }
@@ -946,8 +851,12 @@ public:
             player->UpdateTitansGrip();
 
             LearnWeaponSkills(player);
-
-            player->GetSession()->SendAreaTriggerMessage("Successfuly equipped %s %s template!", playerSpecStr.c_str(), sTemplateNpcMgr->GetClassString(player).c_str());
+            if (player->hasSpanishClient())
+            {
+                player->GetSession()->SendAreaTriggerMessage("Satisfactoriamente equipado como %s %s!", playerSpecStr.c_str(), sTemplateNpcMgr->GetClassString(player).c_str());
+            } else {
+                player->GetSession()->SendAreaTriggerMessage("Successfuly equipped %s %s template!", playerSpecStr.c_str(), sTemplateNpcMgr->GetClassString(player).c_str());
+            }
 
             if (player->getPowerType() == POWER_MANA)
                 player->SetPower(POWER_MANA, player->GetMaxPower(POWER_MANA));
@@ -978,14 +887,22 @@ public:
         {
             if (sTemplateNpcMgr->CanEquipTemplate(player, playerSpecStr) == false)
             {
-                player->GetSession()->SendAreaTriggerMessage("There's no templates for %s specialization yet.", playerSpecStr.c_str());
+                if (player->hasSpanishClient()) {
+                    player->GetSession()->SendAreaTriggerMessage("There's no templates for %s specialization yet.", playerSpecStr.c_str());
+                } else {
+                    player->GetSession()->SendAreaTriggerMessage("No hay plantillas disponibles para %s.", playerSpecStr.c_str());
+                }
                 return;
             }
 
             // Don't let players to use Template feature after spending some talent points
             if (player->GetFreeTalentPoints() < 71)
             {
-                player->GetSession()->SendAreaTriggerMessage("You have already spent some talent points. You need to reset your talents first!");
+                if (player->hasSpanishClient()) {
+                    player->GetSession()->SendAreaTriggerMessage("Tienes talentos usados, debes resetear todos tus puntos de talento primero!");
+                } else {
+                    player->GetSession()->SendAreaTriggerMessage("You have already spent some talent points. You need to reset your talents first!");
+                }
                 player->CLOSE_GOSSIP_MENU();
                 return;
             }
@@ -997,7 +914,12 @@ public:
 
             LearnWeaponSkills(player);
 
-            player->GetSession()->SendAreaTriggerMessage("Successfuly learned talent spec %s!", playerSpecStr.c_str());
+            if (player->hasSpanishClient())
+            {
+                player->GetSession()->SendAreaTriggerMessage("Rama de talentos %s aprendida correctamente!", playerSpecStr.c_str());
+            } else {
+                player->GetSession()->SendAreaTriggerMessage("Successfuly learned talent spec %s!", playerSpecStr.c_str());
+            }
 
             // Learn Riding/Flying
             if (player->HasSpell(SPELL_Artisan_Riding) ||
@@ -1209,7 +1131,11 @@ public:
 
             case 30:
                 sTemplateNpcMgr->RemoveAllGlyphs(player);
-                player->GetSession()->SendAreaTriggerMessage("Your glyphs have been removed.");
+                if (player->hasSpanishClient()) {
+                    player->GetSession()->SendAreaTriggerMessage("Tus glifos han sido removidos.");
+                } else {
+                    player->GetSession()->SendAreaTriggerMessage("Your glyphs have been removed.");
+                }                
                 //GossipHello(player);
                 player->CLOSE_GOSSIP_MENU();
                 break;
@@ -1217,7 +1143,12 @@ public:
             case 31:
                 player->resetTalents(true);
                 player->SendTalentsInfoData(false);
-                player->GetSession()->SendAreaTriggerMessage("Your talents have been reset.");
+                if (player->hasSpanishClient()) {
+                    player->GetSession()->SendAreaTriggerMessage("Tus talentos han sido reseteados.");
+                }
+                else {
+                    player->GetSession()->SendAreaTriggerMessage("Your talents have been reset.");
+                }
                 player->CLOSE_GOSSIP_MENU();
                 break;
 
@@ -1242,7 +1173,11 @@ public:
                         }
                     }
                 }
-                player->GetSession()->SendAreaTriggerMessage("Your equipped gear has been destroyed.");
+                if (player->hasSpanishClient()) {
+                    player->GetSession()->SendAreaTriggerMessage("Todos tus objetos equipados han sido destruidos.");
+                } else {
+                    player->GetSession()->SendAreaTriggerMessage("Your equipped gear has been destroyed.");
+                }
                 player->CLOSE_GOSSIP_MENU();
                 break;
 
@@ -1442,7 +1377,11 @@ public:
                 break;
 
             default: // Just in case
-                player->GetSession()->SendAreaTriggerMessage("Something went wrong in the code. Please contact the administrator.");
+                if (player->hasSpanishClient()) {
+                    player->GetSession()->SendAreaTriggerMessage("Hay algo mal en el codigo. Porfavor contacta con un administrador.");
+                } else {
+                    player->GetSession()->SendAreaTriggerMessage("Something went wrong in the code. Please contact the administrator.");
+                }
                 break;
             }
             player->UpdateSkillsForLevel();
@@ -1460,16 +1399,15 @@ public:
     {
         static std::vector<ChatCommand> TemplateNPCTable =
         {
-            { "reload",      SEC_ADMINISTRATOR, true , &HandleReloadTemplateNPCCommand, "" }
+            { "reload", SEC_ADMINISTRATOR, true , &HandleReloadTemplateNPCCommand, "" }
         };
 
         static std::vector<ChatCommand> commandTable =
         {
-            { "templatenpc", SEC_ADMINISTRATOR, true, nullptr                         , "", TemplateNPCTable }
+            { "templatenpc", SEC_ADMINISTRATOR, true, nullptr, "", TemplateNPCTable }
         };
         return commandTable;
     }
-
 
     static bool HandleReloadTemplateNPCCommand(ChatHandler* handler, const char* /*args*/)
     {
@@ -1491,27 +1429,12 @@ public:
 
     void OnStartup() override
     {
-        // Load templates for Template NPC #1
-        sLog->outString("== TEMPLATE NPC ===========================================================================");
-        sLog->outString("Loading Template Talents...");
+        sLog->outString("Loading TemplateNPC");
         sTemplateNpcMgr->LoadTalentsContainer();
-
-        // Load templates for Template NPC #2
-        sLog->outString("Loading Template Glyphs...");
         sTemplateNpcMgr->LoadGlyphsContainer();
-
-        // Load templates for Template NPC #3
-        sLog->outString("Loading Template Gear for Humans...");
         sTemplateNpcMgr->LoadHumanGearContainer();
-
-        // Load templates for Template NPC #4
-        sLog->outString("Loading Template Gear for Alliances...");
         sTemplateNpcMgr->LoadAllianceGearContainer();
-
-        // Load templates for Template NPC #5
-        sLog->outString("Loading Template Gear for Hordes...");
         sTemplateNpcMgr->LoadHordeGearContainer();
-        sLog->outString("== END TEMPLATE NPC ===========================================================================");
     }
 };
 
