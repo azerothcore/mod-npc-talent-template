@@ -169,7 +169,7 @@ static void LearnWeaponSkills(Player* player)
 
 }
 
-static void SpanishMenu(Player* player, Creature* creature)
+static void SpanishMenu(Player* player)
 {
     switch (player->getClass())
     {
@@ -266,7 +266,7 @@ static void SpanishMenu(Player* player, Creature* creature)
     }
 }
 
-static void EnglishMenu(Player* player, Creature* creature)
+static void EnglishMenu(Player* player)
 {
     switch (player->getClass())
     {
