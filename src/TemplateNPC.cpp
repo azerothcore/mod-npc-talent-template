@@ -786,9 +786,9 @@ public:
         bool OnGossipHello(Player* player, Creature* creature)
         {
             if (player->hasSpanishClient()) {
-                SpanishMenu(player, creature);
+                SpanishMenu(player);
             } else {
-                EnglishMenu(player, creature);
+                EnglishMenu(player);
             }
             /*
             if (player->hasSpanishClient()) {
