@@ -20,7 +20,11 @@
 #define SPELL_Cold_Weather_Flying 54197
 #define SPELL_Teach_Learn_Talent_Specialization_Switches 63680
 #define SPELL_Learn_a_Second_Talent_Specialization 63624
+    #if AC_COMPILER == AC_COMPILER_GNU
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    #endif
 
+    using namespace Acore::ChatCommands;
 enum templateSpells
 {
     PLATE_MAIL = 750,
