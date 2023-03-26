@@ -933,7 +933,7 @@ public:
     {
         if (sTemplateNpcMgr->CanEquipTemplate(player, playerSpecStr) == false)
         {
-            player->GetSession()->SendAreaTriggerMessage("There's no templates for {} specialization yet.", playerSpecStr.c_str());
+            player->GetSession()->SendAreaTriggerMessage("There's no templates for %s specialization yet.", playerSpecStr.c_str());
             return;
         }
 
@@ -970,7 +970,7 @@ public:
 
         LearnWeaponSkills(player);
 
-        player->GetSession()->SendAreaTriggerMessage("Successfuly equipped {} {} template!", playerSpecStr.c_str(), sTemplateNpcMgr->GetClassString(player).c_str());
+        player->GetSession()->SendAreaTriggerMessage("Successfuly equipped %s %s template!", playerSpecStr.c_str(), sTemplateNpcMgr->GetClassString(player).c_str());
 
         if (player->getPowerType() == POWER_MANA)
             player->SetPower(POWER_MANA, player->GetMaxPower(POWER_MANA));
@@ -998,7 +998,7 @@ public:
     {
         if (sTemplateNpcMgr->CanEquipTemplate(player, playerSpecStr) == false)
         {
-            player->GetSession()->SendAreaTriggerMessage("There's no templates for {} specialization yet.", playerSpecStr.c_str());
+            player->GetSession()->SendAreaTriggerMessage("There's no templates for %s specialization yet.", playerSpecStr.c_str());
             return;
         }
 
@@ -1017,7 +1017,7 @@ public:
 
         LearnWeaponSkills(player);
 
-        player->GetSession()->SendAreaTriggerMessage("Successfuly learned talent spec {}!", playerSpecStr.c_str());
+        player->GetSession()->SendAreaTriggerMessage("Successfuly learned talent spec %s!", playerSpecStr.c_str());
 
         // Learn Riding/Flying
         if (player->HasSpell(SPELL_Artisan_Riding) ||
