@@ -1,13 +1,13 @@
 -- DATA
 SET
-@NpcEntry 		:= 55009,
-@NpcName		:= "Pick a spec",
-@NpcSubname		:= "AzerothCore Template",
-@NpcDisplayID		:= 24877;
+@NpcEntry:=55009,
+@NpcName:="Pick a spec",
+@NpcSubname:="AzerothCore Template",
+@NpcDisplayID:=24877;
 
 DELETE FROM `creature_template` WHERE `entry` IN (@NpcEntry);
 INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `unit_class`, `unit_flags`, `type`, `type_flags`, `RegenHealth`, `flags_extra`, `ScriptName`) VALUES
-(@NpcEntry, @NpcDisplayID, @NpcName , @NpcSubname, "Speak", 0, 80, 80, 35, 0, 1, 1.14286, 1, 0, 1, 2, 7, 138936390, 1, 2, "TemplateNPC");
+(@NpcEntry, @NpcDisplayID, @NpcName , @NpcSubname, "Speak", 0, 80, 80, 35, 1, 1, 1.14286, 1, 0, 1, 2, 7, 138936390, 1, 2, "TemplateNPC");
 
 DELETE FROM `npc_text` WHERE `ID` = @NpcEntry;
 INSERT INTO `npc_text` (`ID`, `text0_0`, `text0_1`) VALUES

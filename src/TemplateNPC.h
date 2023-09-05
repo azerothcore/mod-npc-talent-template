@@ -63,167 +63,167 @@ static void LearnWeaponSkills(Player* player)
 
     switch (player->getClass())
     {
-    case CLASS_WARRIOR:
-        player->learnSpell(THROW_WAR);
-        player->learnSpell(TWO_H_SWORDS);
-        player->learnSpell(TWO_H_MACES);
-        player->learnSpell(TWO_H_AXES);
-        player->learnSpell(STAVES);
-        player->learnSpell(POLEARMS);
-        player->learnSpell(ONE_H_SWORDS);
-        player->learnSpell(ONE_H_MACES);
-        player->learnSpell(ONE_H_AXES);
-        player->learnSpell(GUNS);
-        player->learnSpell(FIST_WEAPONS);
-        player->learnSpell(DAGGERS);
-        player->learnSpell(CROSSBOWS);
-        player->learnSpell(BOWS);
-        player->learnSpell(BLOCK);
-        break;
-    case CLASS_PRIEST:
-        player->learnSpell(WANDS);
-        player->learnSpell(STAVES);
-        player->learnSpell(SHOOT);
-        player->learnSpell(ONE_H_MACES);
-        player->learnSpell(DAGGERS);
-        break;
-    case CLASS_PALADIN:
-        player->learnSpell(TWO_H_SWORDS);
-        player->learnSpell(TWO_H_MACES);
-        player->learnSpell(TWO_H_AXES);
-        player->learnSpell(POLEARMS);
-        player->learnSpell(ONE_H_SWORDS);
-        player->learnSpell(ONE_H_MACES);
-        player->learnSpell(ONE_H_AXES);
-        player->learnSpell(BLOCK);
-        break;
-    case CLASS_ROGUE:
-        player->learnSpell(ONE_H_SWORDS);
-        player->learnSpell(ONE_H_MACES);
-        player->learnSpell(ONE_H_AXES);
-        player->learnSpell(GUNS);
-        player->learnSpell(FIST_WEAPONS);
-        player->learnSpell(DAGGERS);
-        player->learnSpell(CROSSBOWS);
-        player->learnSpell(BOWS);
-        break;
-    case CLASS_DEATH_KNIGHT:
-        player->learnSpell(TWO_H_SWORDS);
-        player->learnSpell(TWO_H_MACES);
-        player->learnSpell(TWO_H_AXES);
-        player->learnSpell(POLEARMS);
-        player->learnSpell(ONE_H_SWORDS);
-        player->learnSpell(ONE_H_MACES);
-        player->learnSpell(ONE_H_AXES);
-        break;
-    case CLASS_MAGE:
-        player->learnSpell(WANDS);
-        player->learnSpell(STAVES);
-        player->learnSpell(SHOOT);
-        player->learnSpell(ONE_H_SWORDS);
-        player->learnSpell(DAGGERS);
-        break;
-    case CLASS_SHAMAN:
-        player->learnSpell(TWO_H_MACES);
-        player->learnSpell(TWO_H_AXES);
-        player->learnSpell(STAVES);
-        player->learnSpell(ONE_H_MACES);
-        player->learnSpell(ONE_H_AXES);
-        player->learnSpell(FIST_WEAPONS);
-        player->learnSpell(DAGGERS);
-        player->learnSpell(BLOCK);
-        break;
-    case CLASS_HUNTER:
-        player->learnSpell(THROW_WAR);
-        player->learnSpell(TWO_H_SWORDS);
-        player->learnSpell(TWO_H_AXES);
-        player->learnSpell(STAVES);
-        player->learnSpell(POLEARMS);
-        player->learnSpell(ONE_H_SWORDS);
-        player->learnSpell(ONE_H_AXES);
-        player->learnSpell(GUNS);
-        player->learnSpell(FIST_WEAPONS);
-        player->learnSpell(DAGGERS);
-        player->learnSpell(CROSSBOWS);
-        player->learnSpell(BOWS);
-        break;
-    case CLASS_DRUID:
-        player->learnSpell(TWO_H_MACES);
-        player->learnSpell(STAVES);
-        player->learnSpell(POLEARMS);
-        player->learnSpell(ONE_H_MACES);
-        player->learnSpell(FIST_WEAPONS);
-        player->learnSpell(DAGGERS);
-        break;
-    case CLASS_WARLOCK:
-        player->learnSpell(WANDS);
-        player->learnSpell(STAVES);
-        player->learnSpell(SHOOT);
-        player->learnSpell(ONE_H_SWORDS);
-        player->learnSpell(DAGGERS);
-        break;
-    default:
-        break;
-    }
+        case CLASS_WARRIOR:
+            player->learnSpell(THROW_WAR);
+            player->learnSpell(TWO_H_SWORDS);
+            player->learnSpell(TWO_H_MACES);
+            player->learnSpell(TWO_H_AXES);
+            player->learnSpell(STAVES);
+            player->learnSpell(POLEARMS);
+            player->learnSpell(ONE_H_SWORDS);
+            player->learnSpell(ONE_H_MACES);
+            player->learnSpell(ONE_H_AXES);
+            player->learnSpell(GUNS);
+            player->learnSpell(FIST_WEAPONS);
+            player->learnSpell(DAGGERS);
+            player->learnSpell(CROSSBOWS);
+            player->learnSpell(BOWS);
+            player->learnSpell(BLOCK);
+            break;
+        case CLASS_PRIEST:
+            player->learnSpell(WANDS);
+            player->learnSpell(STAVES);
+            player->learnSpell(SHOOT);
+            player->learnSpell(ONE_H_MACES);
+            player->learnSpell(DAGGERS);
+            break;
+        case CLASS_PALADIN:
+            player->learnSpell(TWO_H_SWORDS);
+            player->learnSpell(TWO_H_MACES);
+            player->learnSpell(TWO_H_AXES);
+            player->learnSpell(POLEARMS);
+            player->learnSpell(ONE_H_SWORDS);
+            player->learnSpell(ONE_H_MACES);
+            player->learnSpell(ONE_H_AXES);
+            player->learnSpell(BLOCK);
+            break;
+        case CLASS_ROGUE:
+            player->learnSpell(ONE_H_SWORDS);
+            player->learnSpell(ONE_H_MACES);
+            player->learnSpell(ONE_H_AXES);
+            player->learnSpell(GUNS);
+            player->learnSpell(FIST_WEAPONS);
+            player->learnSpell(DAGGERS);
+            player->learnSpell(CROSSBOWS);
+            player->learnSpell(BOWS);
+            break;
+        case CLASS_DEATH_KNIGHT:
+            player->learnSpell(TWO_H_SWORDS);
+            player->learnSpell(TWO_H_MACES);
+            player->learnSpell(TWO_H_AXES);
+            player->learnSpell(POLEARMS);
+            player->learnSpell(ONE_H_SWORDS);
+            player->learnSpell(ONE_H_MACES);
+            player->learnSpell(ONE_H_AXES);
+            break;
+        case CLASS_MAGE:
+            player->learnSpell(WANDS);
+            player->learnSpell(STAVES);
+            player->learnSpell(SHOOT);
+            player->learnSpell(ONE_H_SWORDS);
+            player->learnSpell(DAGGERS);
+            break;
+        case CLASS_SHAMAN:
+            player->learnSpell(TWO_H_MACES);
+            player->learnSpell(TWO_H_AXES);
+            player->learnSpell(STAVES);
+            player->learnSpell(ONE_H_MACES);
+            player->learnSpell(ONE_H_AXES);
+            player->learnSpell(FIST_WEAPONS);
+            player->learnSpell(DAGGERS);
+            player->learnSpell(BLOCK);
+            break;
+        case CLASS_HUNTER:
+            player->learnSpell(THROW_WAR);
+            player->learnSpell(TWO_H_SWORDS);
+            player->learnSpell(TWO_H_AXES);
+            player->learnSpell(STAVES);
+            player->learnSpell(POLEARMS);
+            player->learnSpell(ONE_H_SWORDS);
+            player->learnSpell(ONE_H_AXES);
+            player->learnSpell(GUNS);
+            player->learnSpell(FIST_WEAPONS);
+            player->learnSpell(DAGGERS);
+            player->learnSpell(CROSSBOWS);
+            player->learnSpell(BOWS);
+            break;
+        case CLASS_DRUID:
+            player->learnSpell(TWO_H_MACES);
+            player->learnSpell(STAVES);
+            player->learnSpell(POLEARMS);
+            player->learnSpell(ONE_H_MACES);
+            player->learnSpell(FIST_WEAPONS);
+            player->learnSpell(DAGGERS);
+            break;
+        case CLASS_WARLOCK:
+            player->learnSpell(WANDS);
+            player->learnSpell(STAVES);
+            player->learnSpell(SHOOT);
+            player->learnSpell(ONE_H_SWORDS);
+            player->learnSpell(DAGGERS);
+            break;
+        default:
+            break;
+        }
     player->UpdateSkillsToMaxSkillsForLevel();
 
 }
 
 struct TalentTemplate
 {
-    std::string    playerClass;
-    std::string    playerSpec;
-    uint32         talentId;
+    std::string playerClass;
+    std::string playerSpec;
+    uint32 talentId;
 };
 
 struct GlyphTemplate
 {
-    std::string    playerClass;
-    std::string    playerSpec;
-    uint8          slot;
-    uint32         glyph;
+    std::string playerClass;
+    std::string playerSpec;
+    uint8 slot;
+    uint32 glyph;
 };
 
 struct HumanGearTemplate
 {
-    std::string    playerClass;
-    std::string    playerSpec;
-    uint8          pos;
-    uint32         itemEntry;
-    uint32         enchant;
-    uint32         socket1;
-    uint32         socket2;
-    uint32         socket3;
-    uint32         bonusEnchant;
-    uint32         prismaticEnchant;
+    std::string playerClass;
+    std::string playerSpec;
+    uint8 pos;
+    uint32 itemEntry;
+    uint32 enchant;
+    uint32 socket1;
+    uint32 socket2;
+    uint32 socket3;
+    uint32 bonusEnchant;
+    uint32 prismaticEnchant;
 };
 
 struct AllianceGearTemplate
 {
-    std::string    playerClass;
-    std::string    playerSpec;
-    uint8          pos;
-    uint32         itemEntry;
-    uint32         enchant;
-    uint32         socket1;
-    uint32         socket2;
-    uint32         socket3;
-    uint32         bonusEnchant;
-    uint32         prismaticEnchant;
+    std::string playerClass;
+    std::string playerSpec;
+    uint8 pos;
+    uint32 itemEntry;
+    uint32 enchant;
+    uint32 socket1;
+    uint32 socket2;
+    uint32 socket3;
+    uint32 bonusEnchant;
+    uint32 prismaticEnchant;
 };
 
 struct HordeGearTemplate
 {
-    std::string    playerClass;
-    std::string    playerSpec;
-    uint8          pos;
-    uint32         itemEntry;
-    uint32         enchant;
-    uint32         socket1;
-    uint32         socket2;
-    uint32         socket3;
-    uint32         bonusEnchant;
-    uint32         prismaticEnchant;
+    std::string playerClass;
+    std::string playerSpec;
+    uint8 pos;
+    uint32 itemEntry;
+    uint32 enchant;
+    uint32 socket1;
+    uint32 socket2;
+    uint32 socket3;
+    uint32 bonusEnchant;
+    uint32 prismaticEnchant;
 };
 
 typedef std::vector<HumanGearTemplate*> HumanGearContainer;
@@ -274,5 +274,6 @@ public:
     AllianceGearContainer m_AllianceGearContainer;
     HordeGearContainer m_HordeGearContainer;
 };
+
 #define sTemplateNpcMgr sTemplateNPC::instance()
 #endif
