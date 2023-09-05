@@ -3,7 +3,7 @@
 
 void AddSC_TemplateNPC();
 
-void Addmod_npc_talent_templatecripts()
+void Addmod_npc_talent_templateScripts()
 {
     AddSC_TemplateNPC();
 }
