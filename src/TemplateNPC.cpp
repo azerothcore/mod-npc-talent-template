@@ -418,7 +418,7 @@ void sTemplateNPC::LoadTalentsContainer()
         m_TalentContainer.push_back(pTalent);
         ++count;
     } while (result->NextRow());
-    LOG_INFO("module", ">> TEMPLATE NPC: Loaded %u talent templates in %u ms.", count, GetMSTimeDiffToNow(oldMSTime));
+    LOG_INFO("module", ">> TEMPLATE NPC: Loaded {} talent templates in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void sTemplateNPC::LoadGlyphsContainer()
@@ -454,7 +454,7 @@ void sTemplateNPC::LoadGlyphsContainer()
         ++count;
     } while (result->NextRow());
 
-    LOG_INFO("module", ">>TEMPLATE NPC: Loaded %u glyph templates in %u ms.", count, GetMSTimeDiffToNow(oldMSTime));
+    LOG_INFO("module", ">> TEMPLATE NPC: Loaded {} glyph templates in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void sTemplateNPC::LoadHumanGearContainer()
@@ -495,7 +495,7 @@ void sTemplateNPC::LoadHumanGearContainer()
         m_HumanGearContainer.push_back(pItem);
         ++count;
     } while (result->NextRow());
-    LOG_INFO("module", ">> TEMPLATE NPC: Loaded %u gear templates for Humans in %u ms.", count, GetMSTimeDiffToNow(oldMSTime));
+    LOG_INFO("module", ">> TEMPLATE NPC: Loaded {} gear templates for Humans in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void sTemplateNPC::LoadAllianceGearContainer()
@@ -512,7 +512,7 @@ void sTemplateNPC::LoadAllianceGearContainer()
 
     if (!result)
     {
-        LOG_INFO("module", ">> TEMPLATE NPC: Loaded 0 'gear templates. DB table `template_npc_alliance` is empty!");
+        LOG_INFO("module", ">> TEMPLATE NPC: Loaded 0 gear templates. DB table `template_npc_alliance` is empty!");
         return;
     }
 
@@ -536,7 +536,7 @@ void sTemplateNPC::LoadAllianceGearContainer()
         m_AllianceGearContainer.push_back(pItem);
         ++count;
     } while (result->NextRow());
-    LOG_INFO("module", ">> TEMPLATE NPC: Loaded %u gear templates for Alliances in %u ms.", count, GetMSTimeDiffToNow(oldMSTime));
+    LOG_INFO("module", ">> TEMPLATE NPC: Loaded {} gear templates for Alliances in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void sTemplateNPC::LoadHordeGearContainer()
@@ -553,7 +553,7 @@ void sTemplateNPC::LoadHordeGearContainer()
 
     if (!result)
     {
-        LOG_INFO("module", ">> TEMPLATE NPC: Loaded 0 'gear templates. DB table `template_npc_horde` is empty!");
+        LOG_INFO("module", ">> TEMPLATE NPC: Loaded 0 gear templates. DB table `template_npc_horde` is empty!");
         return;
     }
 
@@ -577,7 +577,7 @@ void sTemplateNPC::LoadHordeGearContainer()
         m_HordeGearContainer.push_back(pItem);
         ++count;
     } while (result->NextRow());
-    LOG_INFO("module", ">> TEMPLATE NPC: Loaded %u gear templates for Hordes in %u ms.", count, GetMSTimeDiffToNow(oldMSTime));
+    LOG_INFO("module", ">> TEMPLATE NPC: Loaded {} gear templates for Hordes in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 std::string sTemplateNPC::GetClassString(Player* player)
@@ -1474,7 +1474,7 @@ public:
     void OnStartup() override
     {
         // Load templates for Template NPC #1
-        LOG_INFO("module", "== TEMPLATE NPC ===========================================================================");
+        LOG_INFO("module", "== TEMPLATE NPC ==");
         LOG_INFO("module", "Loading Template Talents...");
         sTemplateNpcMgr->LoadTalentsContainer();
 
@@ -1493,7 +1493,7 @@ public:
         // Load templates for Template NPC #5
         LOG_INFO("module", "Loading Template Gear for Hordes...");
         sTemplateNpcMgr->LoadHordeGearContainer();
-        LOG_INFO("module", "== END TEMPLATE NPC ===========================================================================");
+        LOG_INFO("module", "== END TEMPLATE NPC ==");
     }
 };
 
