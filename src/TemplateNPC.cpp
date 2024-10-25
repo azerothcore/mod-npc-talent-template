@@ -1169,23 +1169,7 @@ public:
         case 33:
             for (uint8 i = EQUIPMENT_SLOT_START; i < EQUIPMENT_SLOT_END; ++i)
             {
-                if (Item* haveItemEquipped = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
-                {
-                    if (haveItemEquipped)
-                    {
-                        player->DestroyItemCount(haveItemEquipped->GetEntry(), 1, true, true);
-
-                        if (haveItemEquipped->IsInWorld())
-                        {
-                            haveItemEquipped->RemoveFromWorld();
-                            haveItemEquipped->DestroyForPlayer(player);
-                        }
-
-                        haveItemEquipped->SetUInt64Value(ITEM_FIELD_CONTAINED, 0);
-                        haveItemEquipped->SetSlot(NULL_SLOT);
-                        haveItemEquipped->SetState(ITEM_REMOVED, player);
-                    }
-                }
+                player->DestroyItem(INVENTORY_SLOT_BAG_0, i, true);
             }
             player->GetSession()->SendAreaTriggerMessage("Your equipped gear has been destroyed.");
             CloseGossipMenuFor(player);
