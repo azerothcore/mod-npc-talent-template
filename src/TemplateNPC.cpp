@@ -3,7 +3,6 @@
 #include "ScriptedGossip.h"
 #include "Chat.h"
 
-
 void sTemplateNPC::LearnPlateMailSpells(Player *player)
 {
     switch (player->getClass())
