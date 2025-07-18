@@ -9,6 +9,13 @@
 
 #define DEFAULT_GOSSIP_ACTION_ENTRY 9999 // default value for gossipAction when creating new template
 
+enum TalentsAndSpells
+{
+    TALENT_MANGLE = 33917,
+    SPELL_MANGLE_CAT = 33876, // Rank 1
+    SPELL_MANGLE_BEAR = 33878 // Rank 1
+};
+
 void sTemplateNPC::LearnPlateMailSpells(Player *player)
 {
     switch (player->getClass())
@@ -75,10 +82,9 @@ void sTemplateNPC::LearnTemplateTalents(Player* player, const std::string& sTale
             player->learnSpellHighRank(talentTemplate->talentId);
             player->addTalent(talentTemplate->talentId, player->GetActiveSpecMask(), 0);
 
-            // Druid Mangle talent
-            if (talentTemplate->talentId == 33917)
+            if (talentTemplate->talentId == TALENT_MANGLE)
             {
-                player->CastSpell(player, 33917, true); // casts Mangle 33917, which teaches 'Mangle (Cat)' and 'Mangle (Bear)'
+                player->CastSpell(player, TALENT_MANGLE, true); // teaches 'Mangle (Cat)' and 'Mangle (Bear)'
 
                 // Learn highest rank of Mangle
                 auto LearnHighestRankForLevel = [player](uint32 baseRankId)
@@ -91,8 +97,8 @@ void sTemplateNPC::LearnTemplateTalents(Player* player, const std::string& sTale
                         player->learnSpell(id);
                     }
                 };
-                LearnHighestRankForLevel(33876); // Mangle –  Cat
-                LearnHighestRankForLevel(33878); // Mangle –  Bear
+                LearnHighestRankForLevel(SPELL_MANGLE_CAT);
+                LearnHighestRankForLevel(SPELL_MANGLE_BEAR);
             }
         }
     player->InitTalentForLevel();
