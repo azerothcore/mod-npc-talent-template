@@ -18,6 +18,20 @@ This mod introduces an NPC that allows players to instantly apply pre-configured
 Video Showcase:
 https://streamable.com/yxv1m
 
+## Menu
+The NPC only offers templates for the player's class and level.
+
+1. **Main menu**: one entry per category (e.g. `TBC Pre-Raid`, `TBC Phase 1` … `TBC Phase 5`), any
+   templates without a category, and **Reset...**.
+2. **Category**: one entry per build.
+3. **Build**: what to apply: *Apply everything*, *Gear only*, *Talents and glyphs*, *Talents only* or
+   *Glyphs only*. Only choices the build allows (`mask`) and has template data for are shown.
+4. **Reset...**: *Reset everything*, or reset talents, pet talents (hunters), glyphs or equipped gear
+   one at a time. Each option follows its `NpcTalentTemplate.Enable*` config switch.
+
+Gear can only be applied with nothing equipped and talents only with no talent points spent.
+Use **Reset...** first if needed.
+
 ## Creating custom gear sets
 This process can only be done by an administrator and is error-prone. Creating gear sets should be done on a local development server and exporting sets from the DB to a `.sql` is recommended.
 
@@ -30,7 +44,7 @@ The following entries are created in the `acore_characters` db:
 a. `mod_npc_talent_template_gear`: gear for your class, spec and race. When exporting, modify the raceMask as needed. When creating spec set for multiple races, create a template for one race, export to sql then create template for a new race. Modify the raceMask as needed
 b. `mod_npc_talent_template_talents`: no modifying needed
 c. `mod_npc_talent_template_glyphs`: no modifying needed
-d. `mod_npc_talent_template_index`: modify gossipText, actionId needs to be unique per spec. Gossip options are displayed according to their ID with the lowest ID at the top. You can override a column to re-use talents or glyphs or gear from another template. For example, talents and glyphs from `Restoration80PvP` can be re-used
+d. `mod_npc_talent_template_index`: modify gossipText and set `gossipAction`. Builds are listed by `gossipAction`, lowest at the top. `mask` limits what the build may apply (1 = gear, 2 = glyphs, 4 = talents, 7 = all); several rows with the same class and spec in the same category are shown as one build. Set `category` to group the build behind a sub-menu (empty = main menu); categories are ordered by `categoryOrder`, then by name (the bundled sets use 1xx = Classic, 2xx = TBC, 3xx = WotLK). You can override a column to re-use talents or glyphs or gear from another template. For example, talents and glyphs from `Restoration80PvP` can be re-used
 
 `.templatenpc reload` to reload changes. Test with dropping `acore_characters.mod_npc_talent_template*` tables and updates from character db as needed
 ```sql

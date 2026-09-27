@@ -215,15 +215,35 @@ struct GearTemplate
     uint32 prismaticEnchant;
 };
 
-enum GossipActions
+// Gossip menus are told apart by the sender; the action carries the menu's argument.
+//   root       SENDER_MAIN         action = GossipMainActions
+//   category   SENDER_CATEGORY     action = index into the player's category list
+//   build      SENDER_BUILD        action = index into indexContainer
+//   apply      SENDER_APPLY_BASE + TemplateFlags, action = index into indexContainer
+//   reset      SENDER_RESET        action = GossipResetActions
+enum GossipSenders
 {
-    GOSSIP_ACTION_SPACER = 5000, // ---------
-    GOSSIP_ACTION_RESET_TALENTS = 5001,
-    GOSSIP_ACTION_RESET_PET_TALENTS = 5002,
-    GOSSIP_ACTION_RESET_REMOVE_GLYPHS = 5003,
-    GOSSIP_ACTION_RESET_REMOVE_EQUIPPED_GEAR = 5004,
-    GOSSIP_ACTION_BACK = 5005,           // return to root menu from a category submenu
-    GOSSIP_ACTION_CATEGORY_BASE = 6000,  // category nav: action = BASE + categoryIndex
+    SENDER_MAIN = 1, // GOSSIP_SENDER_MAIN
+    SENDER_CATEGORY = 2,
+    SENDER_BUILD = 3,
+    SENDER_RESET = 4,
+    SENDER_APPLY_BASE = 100,
+};
+
+enum GossipMainActions
+{
+    GOSSIP_ACTION_ROOT = 0,
+    GOSSIP_ACTION_SPACER = 1, // ---------
+    GOSSIP_ACTION_RESET_MENU = 2,
+};
+
+enum GossipResetActions
+{
+    GOSSIP_ACTION_RESET_ALL = 0,
+    GOSSIP_ACTION_RESET_TALENTS = 1,
+    GOSSIP_ACTION_RESET_PET_TALENTS = 2,
+    GOSSIP_ACTION_RESET_REMOVE_GLYPHS = 3,
+    GOSSIP_ACTION_RESET_REMOVE_EQUIPPED_GEAR = 4,
 };
 
 enum TemplateFlags
@@ -248,6 +268,7 @@ struct IndexTemplate
     std::string glyphOverride;   // use playerSpec if not set
     std::string talentOverride;  // use playerSpec if not set
     std::string category;        // non-empty = grouped behind a sub-menu; empty = root menu
+    uint32 categoryOrder;        // sort key of the category in the root menu (then by name)
 };
 
 typedef std::vector<TalentTemplate*> TalentContainer;
@@ -286,7 +307,10 @@ public:
     void SatisfyExtraGearRequirements(Player* player, const std::string& sGear);
     void LearnTemplateTalents(Player* player, const std::string& sTalents);
     void LearnTemplateGlyphs(Player* player, const std::string& sGlyphs);
-    void ApplyTemplate(Player* player, IndexTemplate* indexTemplate);
+    void ApplyTemplate(Player* player, IndexTemplate* indexTemplate, TemplateFlags flags);
+    bool HasGearTemplate(Player* player, std::string const& sGear);
+    bool HasTalentTemplate(Player* player, std::string const& sTalents);
+    bool HasGlyphTemplate(Player* player, std::string const& sGlyphs);
 
     void LearnPlateMailSpells(Player* player);
 
