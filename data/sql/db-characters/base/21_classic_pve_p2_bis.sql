@@ -205,7 +205,8 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Paladin', 'Holy60PvEP2BiS', @RACEMASK_ALL, 13, 18637, 0, 0, 0, 0, 0, 0),
 ('Paladin', 'Holy60PvEP2BiS', @RACEMASK_ALL, 14, 18510, 1888, 0, 0, 0, 0, 0),
 ('Paladin', 'Holy60PvEP2BiS', @RACEMASK_ALL, 15, 17103, 2505, 0, 0, 0, 0, 0),
-('Paladin', 'Holy60PvEP2BiS', @RACEMASK_ALL, 16, 19312, 907, 0, 0, 0, 0, 0);
+('Paladin', 'Holy60PvEP2BiS', @RACEMASK_ALL, 16, 19312, 907, 0, 0, 0, 0, 0),
+('Paladin', 'Holy60PvEP2BiS', @RACEMASK_ALL, 17, 23201, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
 -- ===== Paladin Protection60PvEP2BiS =====
@@ -232,7 +233,8 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Paladin', 'Protection60PvEP2BiS', @RACEMASK_ALL, 12, 18406, 0, 0, 0, 0, 0, 0),
 ('Paladin', 'Protection60PvEP2BiS', @RACEMASK_ALL, 14, 18495, 1889, 0, 0, 0, 0, 0),
 ('Paladin', 'Protection60PvEP2BiS', @RACEMASK_ALL, 15, 18348, 1900, 0, 0, 0, 0, 0),
-('Paladin', 'Protection60PvEP2BiS', @RACEMASK_ALL, 16, 17066, 929, 0, 0, 0, 0, 0);
+('Paladin', 'Protection60PvEP2BiS', @RACEMASK_ALL, 16, 17066, 929, 0, 0, 0, 0, 0),
+('Paladin', 'Protection60PvEP2BiS', @RACEMASK_ALL, 17, 23203, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
 -- ===== Priest Holy60PvEP2BiS =====

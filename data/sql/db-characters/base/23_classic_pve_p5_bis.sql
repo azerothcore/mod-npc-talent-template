@@ -243,7 +243,8 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Paladin', 'Protection60PvEP5BiS', @RACEMASK_ALL, 13, 21180, 0, 0, 0, 0, 0, 0),
 ('Paladin', 'Protection60PvEP5BiS', @RACEMASK_ALL, 14, 21621, 1889, 0, 0, 0, 0, 0),
 ('Paladin', 'Protection60PvEP5BiS', @RACEMASK_ALL, 15, 19019, 1900, 0, 0, 0, 0, 0),
-('Paladin', 'Protection60PvEP5BiS', @RACEMASK_ALL, 16, 21269, 929, 0, 0, 0, 0, 0);
+('Paladin', 'Protection60PvEP5BiS', @RACEMASK_ALL, 16, 21269, 929, 0, 0, 0, 0, 0),
+('Paladin', 'Protection60PvEP5BiS', @RACEMASK_ALL, 17, 23203, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
 -- ===== Priest Holy60PvEP5BiS =====
