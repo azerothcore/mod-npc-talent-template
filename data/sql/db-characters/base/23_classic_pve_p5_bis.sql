@@ -37,7 +37,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Druid', 'Balance60PvEP5BiS', @RACEMASK_ALL, 14, 22731, 1888, 0, 0, 0, 0, 0),
 ('Druid', 'Balance60PvEP5BiS', @RACEMASK_ALL, 15, 19360, 2504, 0, 0, 0, 0, 0),
 ('Druid', 'Balance60PvEP5BiS', @RACEMASK_ALL, 16, 21597, 0, 0, 0, 0, 0, 0),
-('Druid', 'Balance60PvEP5BiS', @RACEMASK_ALL, 17, 23197, 0, 0, 0, 0, 0, 0);
+('Druid', 'Balance60PvEP5BiS', @RACEMASK_ALL, 17, 32387, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
 -- ===== Druid Cat60PvEP5BiS =====
@@ -66,7 +66,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Druid', 'Cat60PvEP5BiS', @RACEMASK_ALL, 13, 23570, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Cat60PvEP5BiS', @RACEMASK_ALL, 14, 21710, 849, 0, 0, 0, 0, 0),
 ('Druid', 'Cat60PvEP5BiS', @RACEMASK_ALL, 15, 9449, 2564, 0, 0, 0, 0, 0),
-('Druid', 'Cat60PvEP5BiS', @RACEMASK_ALL, 17, 22397, 0, 0, 0, 0, 0, 0);
+('Druid', 'Cat60PvEP5BiS', @RACEMASK_ALL, 17, 32387, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
 -- ===== Druid Bear60PvEP5BiS =====
@@ -95,7 +95,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Druid', 'Bear60PvEP5BiS', @RACEMASK_ALL, 13, 21180, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Bear60PvEP5BiS', @RACEMASK_ALL, 14, 21710, 1889, 0, 0, 0, 0, 0),
 ('Druid', 'Bear60PvEP5BiS', @RACEMASK_ALL, 15, 9449, 1900, 0, 0, 0, 0, 0),
-('Druid', 'Bear60PvEP5BiS', @RACEMASK_ALL, 17, 23198, 0, 0, 0, 0, 0, 0);
+('Druid', 'Bear60PvEP5BiS', @RACEMASK_ALL, 17, 32387, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
 -- ===== Druid Restoration60PvEP5BiS =====
@@ -125,7 +125,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Druid', 'Restoration60PvEP5BiS', @RACEMASK_ALL, 14, 21583, 1888, 0, 0, 0, 0, 0),
 ('Druid', 'Restoration60PvEP5BiS', @RACEMASK_ALL, 15, 21839, 2505, 0, 0, 0, 0, 0),
 ('Druid', 'Restoration60PvEP5BiS', @RACEMASK_ALL, 16, 21666, 0, 0, 0, 0, 0, 0),
-('Druid', 'Restoration60PvEP5BiS', @RACEMASK_ALL, 17, 22399, 0, 0, 0, 0, 0, 0);
+('Druid', 'Restoration60PvEP5BiS', @RACEMASK_ALL, 17, 25643, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
 -- ===== Hunter Marksmanship60PvEP5BiS =====
@@ -214,7 +214,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Paladin', 'Holy60PvEP5BiS', @RACEMASK_ALL, 14, 18510, 1888, 0, 0, 0, 0, 0),
 ('Paladin', 'Holy60PvEP5BiS', @RACEMASK_ALL, 15, 21839, 2505, 0, 0, 0, 0, 0),
 ('Paladin', 'Holy60PvEP5BiS', @RACEMASK_ALL, 16, 19312, 907, 0, 0, 0, 0, 0),
-('Paladin', 'Holy60PvEP5BiS', @RACEMASK_ALL, 17, 23201, 0, 0, 0, 0, 0, 0);
+('Paladin', 'Holy60PvEP5BiS', @RACEMASK_ALL, 17, 25644, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
 -- ===== Paladin Protection60PvEP5BiS =====
