@@ -95,7 +95,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Druid', 'Bear70PvEP2BiS', @RACEMASK_ALL, 13, 28579, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Bear70PvEP2BiS', @RACEMASK_ALL, 14, 28660, 368, 0, 0, 0, 0, 0),
 ('Druid', 'Bear70PvEP2BiS', @RACEMASK_ALL, 15, 30021, 2673, 0, 0, 0, 0, 0),
-('Druid', 'Bear70PvEP2BiS', @RACEMASK_ALL, 17, 32387, 0, 0, 0, 0, 0, 0);
+('Druid', 'Bear70PvEP2BiS', @RACEMASK_ALL, 17, 23198, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
 -- ===== Druid Restoration70PvEP2BiS =====
@@ -209,7 +209,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Hunter', 'Survival70PvEP2BiS', @RACEMASK_ALL, 8, 29966, 2647, 2731, 0, 0, 0, 0),
 ('Hunter', 'Survival70PvEP2BiS', @RACEMASK_ALL, 9, 28506, 2564, 2726, 2731, 0, 0, 0),
 ('Hunter', 'Survival70PvEP2BiS', @RACEMASK_ALL, 10, 28791, 0, 0, 0, 0, 0, 0),
-('Hunter', 'Survival70PvEP2BiS', @RACEMASK_ALL, 11, 29298, 0, 0, 0, 0, 0, 0),
+('Hunter', 'Survival70PvEP2BiS', @RACEMASK_ALL, 11, 30052, 0, 0, 0, 0, 0, 0),
 ('Hunter', 'Survival70PvEP2BiS', @RACEMASK_ALL, 12, 28830, 0, 0, 0, 0, 0, 0),
 ('Hunter', 'Survival70PvEP2BiS', @RACEMASK_ALL, 13, 29383, 0, 0, 0, 0, 0, 0),
 ('Hunter', 'Survival70PvEP2BiS', @RACEMASK_ALL, 14, 29994, 368, 0, 0, 0, 0, 0),
@@ -237,8 +237,8 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Mage', 'Arcane70PvEP2BiS', @RACEMASK_ALL, 7, 30067, 2656, 0, 0, 0, 0, 0),
 ('Mage', 'Arcane70PvEP2BiS', @RACEMASK_ALL, 8, 29918, 2650, 0, 0, 0, 0, 0),
 ('Mage', 'Arcane70PvEP2BiS', @RACEMASK_ALL, 9, 29987, 2322, 0, 0, 0, 0, 0),
-('Mage', 'Arcane70PvEP2BiS', @RACEMASK_ALL, 10, 29302, 0, 0, 0, 0, 0, 0),
-('Mage', 'Arcane70PvEP2BiS', @RACEMASK_ALL, 11, 29287, 0, 0, 0, 0, 0, 0),
+('Mage', 'Arcane70PvEP2BiS', @RACEMASK_ALL, 10, 29287, 0, 0, 0, 0, 0, 0),
+('Mage', 'Arcane70PvEP2BiS', @RACEMASK_ALL, 11, 29922, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Arcane70PvEP2BiS', @RACEMASK_ALL, 12, 30720, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Arcane70PvEP2BiS', @RACEMASK_ALL, 13, 29370, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Arcane70PvEP2BiS', @RACEMASK_ALL, 14, 29992, 2621, 0, 0, 0, 0, 0),
@@ -266,8 +266,8 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Mage', 'Fire70PvEP2BiS', @RACEMASK_ALL, 7, 30067, 2656, 0, 0, 0, 0, 0),
 ('Mage', 'Fire70PvEP2BiS', @RACEMASK_ALL, 8, 29918, 2650, 0, 0, 0, 0, 0),
 ('Mage', 'Fire70PvEP2BiS', @RACEMASK_ALL, 9, 29987, 2322, 0, 0, 0, 0, 0),
-('Mage', 'Fire70PvEP2BiS', @RACEMASK_ALL, 10, 29302, 0, 0, 0, 0, 0, 0),
-('Mage', 'Fire70PvEP2BiS', @RACEMASK_ALL, 11, 28793, 0, 0, 0, 0, 0, 0),
+('Mage', 'Fire70PvEP2BiS', @RACEMASK_ALL, 10, 28793, 0, 0, 0, 0, 0, 0),
+('Mage', 'Fire70PvEP2BiS', @RACEMASK_ALL, 11, 30109, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Fire70PvEP2BiS', @RACEMASK_ALL, 12, 30626, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Fire70PvEP2BiS', @RACEMASK_ALL, 13, 27683, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Fire70PvEP2BiS', @RACEMASK_ALL, 14, 28766, 2621, 0, 0, 0, 0, 0),
@@ -296,8 +296,8 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Mage', 'Frost70PvEP2BiS', @RACEMASK_ALL, 7, 30067, 2656, 0, 0, 0, 0, 0),
 ('Mage', 'Frost70PvEP2BiS', @RACEMASK_ALL, 8, 29918, 2650, 0, 0, 0, 0, 0),
 ('Mage', 'Frost70PvEP2BiS', @RACEMASK_ALL, 9, 30205, 2322, 0, 0, 0, 0, 0),
-('Mage', 'Frost70PvEP2BiS', @RACEMASK_ALL, 10, 29302, 0, 0, 0, 0, 0, 0),
-('Mage', 'Frost70PvEP2BiS', @RACEMASK_ALL, 11, 30109, 0, 0, 0, 0, 0, 0),
+('Mage', 'Frost70PvEP2BiS', @RACEMASK_ALL, 10, 30109, 0, 0, 0, 0, 0, 0),
+('Mage', 'Frost70PvEP2BiS', @RACEMASK_ALL, 11, 28793, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Frost70PvEP2BiS', @RACEMASK_ALL, 12, 30720, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Frost70PvEP2BiS', @RACEMASK_ALL, 13, 27683, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Frost70PvEP2BiS', @RACEMASK_ALL, 14, 28766, 2621, 0, 0, 0, 0, 0),
@@ -566,7 +566,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Shaman', 'Elemental70PvEP2BiS', @RACEMASK_ALL, 8, 29918, 2650, 0, 0, 0, 0, 0),
 ('Shaman', 'Elemental70PvEP2BiS', @RACEMASK_ALL, 9, 28780, 2322, 2736, 2740, 0, 0, 0),
 ('Shaman', 'Elemental70PvEP2BiS', @RACEMASK_ALL, 10, 30667, 0, 0, 0, 0, 0, 0),
-('Shaman', 'Elemental70PvEP2BiS', @RACEMASK_ALL, 11, 29302, 0, 0, 0, 0, 0, 0),
+('Shaman', 'Elemental70PvEP2BiS', @RACEMASK_ALL, 11, 30109, 0, 0, 0, 0, 0, 0),
 ('Shaman', 'Elemental70PvEP2BiS', @RACEMASK_ALL, 12, 28785, 0, 0, 0, 0, 0, 0),
 ('Shaman', 'Elemental70PvEP2BiS', @RACEMASK_ALL, 13, 29370, 0, 0, 0, 0, 0, 0),
 ('Shaman', 'Elemental70PvEP2BiS', @RACEMASK_ALL, 14, 28797, 2621, 0, 0, 0, 0, 0),
@@ -655,7 +655,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Warlock', 'Affliction70PvEP2BiS', @RACEMASK_ALL, 8, 29918, 2650, 0, 0, 0, 0, 0),
 ('Warlock', 'Affliction70PvEP2BiS', @RACEMASK_ALL, 9, 30725, 2322, 2728, 2728, 0, 0, 0),
 ('Warlock', 'Affliction70PvEP2BiS', @RACEMASK_ALL, 10, 30109, 0, 0, 0, 0, 0, 0),
-('Warlock', 'Affliction70PvEP2BiS', @RACEMASK_ALL, 11, 29302, 0, 0, 0, 0, 0, 0),
+('Warlock', 'Affliction70PvEP2BiS', @RACEMASK_ALL, 11, 28753, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Affliction70PvEP2BiS', @RACEMASK_ALL, 12, 27683, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Affliction70PvEP2BiS', @RACEMASK_ALL, 13, 29370, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Affliction70PvEP2BiS', @RACEMASK_ALL, 14, 28766, 2621, 0, 0, 0, 0, 0),
@@ -685,7 +685,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Warlock', 'Demonology70PvEP2BiS', @RACEMASK_ALL, 8, 30684, 2650, 0, 0, 0, 0, 0),
 ('Warlock', 'Demonology70PvEP2BiS', @RACEMASK_ALL, 9, 30725, 2322, 2728, 2728, 0, 0, 0),
 ('Warlock', 'Demonology70PvEP2BiS', @RACEMASK_ALL, 10, 30109, 0, 0, 0, 0, 0, 0),
-('Warlock', 'Demonology70PvEP2BiS', @RACEMASK_ALL, 11, 29302, 0, 0, 0, 0, 0, 0),
+('Warlock', 'Demonology70PvEP2BiS', @RACEMASK_ALL, 11, 28793, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Demonology70PvEP2BiS', @RACEMASK_ALL, 12, 29370, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Demonology70PvEP2BiS', @RACEMASK_ALL, 13, 27683, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Demonology70PvEP2BiS', @RACEMASK_ALL, 14, 29992, 2621, 0, 0, 0, 0, 0),
@@ -715,7 +715,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Warlock', 'Destruction70PvEP2BiS', @RACEMASK_ALL, 8, 29918, 2650, 0, 0, 0, 0, 0),
 ('Warlock', 'Destruction70PvEP2BiS', @RACEMASK_ALL, 9, 30725, 2322, 2728, 2728, 0, 0, 0),
 ('Warlock', 'Destruction70PvEP2BiS', @RACEMASK_ALL, 10, 30109, 0, 0, 0, 0, 0, 0),
-('Warlock', 'Destruction70PvEP2BiS', @RACEMASK_ALL, 11, 29302, 0, 0, 0, 0, 0, 0),
+('Warlock', 'Destruction70PvEP2BiS', @RACEMASK_ALL, 11, 28753, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Destruction70PvEP2BiS', @RACEMASK_ALL, 12, 27683, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Destruction70PvEP2BiS', @RACEMASK_ALL, 13, 29370, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Destruction70PvEP2BiS', @RACEMASK_ALL, 14, 28766, 2621, 0, 0, 0, 0, 0),
@@ -729,8 +729,8 @@ SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_temp
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
 INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
-('Warrior', 'Arms70PvEP2BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P2 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'Arms70PvE', 'TBC Phase 2', 202),
-('Warrior', 'Arms70PvEP2BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P2 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'Arms70PvE', 'TBC Phase 2', 202);
+('Warrior', 'Arms70PvEP2BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P2 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'ArmsSword70PvE', 'TBC Phase 2', 202),
+('Warrior', 'Arms70PvEP2BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P2 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'ArmsSword70PvE', 'TBC Phase 2', 202);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -804,7 +804,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Warrior', 'Protection70PvEP2BiS', @RACEMASK_ALL, 8, 32818, 2648, 2737, 0, 0, 0, 0),
 ('Warrior', 'Protection70PvEP2BiS', @RACEMASK_ALL, 9, 29998, 2564, 2737, 2731, 0, 0, 0),
 ('Warrior', 'Protection70PvEP2BiS', @RACEMASK_ALL, 10, 30834, 0, 0, 0, 0, 0, 0),
-('Warrior', 'Protection70PvEP2BiS', @RACEMASK_ALL, 11, 29294, 0, 0, 0, 0, 0, 0),
+('Warrior', 'Protection70PvEP2BiS', @RACEMASK_ALL, 11, 29283, 0, 0, 0, 0, 0, 0),
 ('Warrior', 'Protection70PvEP2BiS', @RACEMASK_ALL, 12, 23836, 0, 0, 0, 0, 0, 0),
 ('Warrior', 'Protection70PvEP2BiS', @RACEMASK_ALL, 13, 28121, 0, 0, 0, 0, 0, 0),
 ('Warrior', 'Protection70PvEP2BiS', @RACEMASK_ALL, 14, 29994, 368, 0, 0, 0, 0, 0),
@@ -834,7 +834,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Death Knight', 'Blood70PvEP2BiS', @RACEMASK_ALL, 8, 32818, 2648, 2737, 0, 0, 0, 0),
 ('Death Knight', 'Blood70PvEP2BiS', @RACEMASK_ALL, 9, 29998, 2564, 2737, 2731, 0, 0, 0),
 ('Death Knight', 'Blood70PvEP2BiS', @RACEMASK_ALL, 10, 30834, 0, 0, 0, 0, 0, 0),
-('Death Knight', 'Blood70PvEP2BiS', @RACEMASK_ALL, 11, 29294, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Blood70PvEP2BiS', @RACEMASK_ALL, 11, 29283, 0, 0, 0, 0, 0, 0),
 ('Death Knight', 'Blood70PvEP2BiS', @RACEMASK_ALL, 12, 23836, 0, 0, 0, 0, 0, 0),
 ('Death Knight', 'Blood70PvEP2BiS', @RACEMASK_ALL, 13, 28121, 0, 0, 0, 0, 0, 0),
 ('Death Knight', 'Blood70PvEP2BiS', @RACEMASK_ALL, 14, 29994, 368, 0, 0, 0, 0, 0),

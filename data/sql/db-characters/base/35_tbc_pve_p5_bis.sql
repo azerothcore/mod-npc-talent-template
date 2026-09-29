@@ -732,8 +732,8 @@ SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_temp
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
 INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
-('Warrior', 'Arms70PvEP5BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P5 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'Arms70PvE', 'TBC Phase 5', 205),
-('Warrior', 'Arms70PvEP5BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P5 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'Arms70PvE', 'TBC Phase 5', 205);
+('Warrior', 'Arms70PvEP5BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P5 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'ArmsSword70PvE', 'TBC Phase 5', 205),
+('Warrior', 'Arms70PvEP5BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P5 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'ArmsSword70PvE', 'TBC Phase 5', 205);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;

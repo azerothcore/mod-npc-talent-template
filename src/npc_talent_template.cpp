@@ -764,7 +764,9 @@ public:
         for (Choice const& choice : choices)
         {
             uint32 flags = choice.flags & build->mask;
-            if (!flags || std::ranges::find(shown, flags) != shown.end())
+            if (!flags || (choice.flags != TEMPLATE_APPLY_ALL && flags != choice.flags))
+                continue;
+            if (std::ranges::find(shown, flags) != shown.end())
                 continue;
             shown.push_back(flags);
             AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, choice.text, SENDER_APPLY_BASE + flags, index);
