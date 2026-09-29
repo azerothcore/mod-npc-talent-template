@@ -253,6 +253,7 @@ void sTemplateNPC::LoadIndexContainer()
     for (auto* index : indexContainer)
         delete index;
     indexContainer.clear();
+    ++indexReloads;
 
     QueryResult result = CharacterDatabase.Query("SELECT `playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `gearOverride`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder` FROM `mod_npc_talent_template_index` ORDER BY `gossipAction`;");
 
@@ -693,9 +694,16 @@ public:
         return sTemplateNpcMgr->enableResetTalents || sTemplateNpcMgr->enableRemoveAllGlyphs || sTemplateNpcMgr->enableDestroyEquippedGear;
     }
 
+    // Senders carry the index reload count above the low byte, so a menu opened
+    // before a `.templatenpc reload` can't select a row that has since moved.
+    static uint32 Sender(uint32 kind)
+    {
+        return kind | (sTemplateNpcMgr->indexReloads << 8);
+    }
+
     static void AddBackItem(Player* player, uint32 sender, uint32 action)
     {
-        AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cffaaaaaa<< Back|r", sender, action);
+        AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cffaaaaaa<< Back|r", Sender(sender), action);
     }
 
     // Root: categories, uncategorized builds, then the reset sub-menu.
@@ -703,15 +711,15 @@ public:
     {
         std::vector<std::string> categories = GetEligibleCategories(player);
         for (uint32 i = 0; i < static_cast<uint32>(categories.size()); ++i)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ccff>> " + categories[i] + "|r", SENDER_CATEGORY, i);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ccff>> " + categories[i] + "|r", Sender(SENDER_CATEGORY), i);
 
         for (Build const& build : GetBuilds(player, ""))
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, sTemplateNpcMgr->indexContainer[build.index]->gossipText, SENDER_BUILD, build.index);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, sTemplateNpcMgr->indexContainer[build.index]->gossipText, Sender(SENDER_BUILD), build.index);
 
         if (HasResetOptions())
         {
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "----------------------------------------------", SENDER_MAIN, GOSSIP_ACTION_SPACER);
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30:30|t|r Reset...", SENDER_MAIN, GOSSIP_ACTION_RESET_MENU);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "----------------------------------------------", Sender(SENDER_MAIN), GOSSIP_ACTION_SPACER);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30:30|t|r Reset...", Sender(SENDER_MAIN), GOSSIP_ACTION_RESET_MENU);
         }
 
         SendGossipMenuFor(player, creature->GetEntry(), creature->GetGUID());
@@ -728,7 +736,7 @@ public:
         }
 
         for (Build const& build : GetBuilds(player, categories[categoryIndex]))
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, sTemplateNpcMgr->indexContainer[build.index]->gossipText, SENDER_BUILD, build.index);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, sTemplateNpcMgr->indexContainer[build.index]->gossipText, Sender(SENDER_BUILD), build.index);
 
         AddBackItem(player, SENDER_MAIN, GOSSIP_ACTION_ROOT);
         SendGossipMenuFor(player, creature->GetEntry(), creature->GetGUID());
@@ -769,7 +777,7 @@ public:
             if (std::ranges::find(shown, flags) != shown.end())
                 continue;
             shown.push_back(flags);
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, choice.text, SENDER_APPLY_BASE + flags, index);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, choice.text, Sender(SENDER_APPLY_BASE + flags), index);
         }
 
         std::string const& category = sTemplateNpcMgr->indexContainer[index]->category;
@@ -791,20 +799,20 @@ public:
             (sTemplateNpcMgr->enableRemoveAllGlyphs ? 1 : 0) + (sTemplateNpcMgr->enableDestroyEquippedGear ? 1 : 0);
 
         if (options > 1)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_Holy_BorrowedTime:30:30|t|r Reset everything", SENDER_RESET, GOSSIP_ACTION_RESET_ALL, "Are you sure you want to reset everything listed below?", 0, false);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_Holy_BorrowedTime:30:30|t|r Reset everything", Sender(SENDER_RESET), GOSSIP_ACTION_RESET_ALL, "Are you sure you want to reset everything listed below?", 0, false);
 
         if (sTemplateNpcMgr->enableResetTalents)
         {
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30:30|t|r Reset Talents", SENDER_RESET, GOSSIP_ACTION_RESET_TALENTS, "Are you sure you want to reset your talents?", 0, false);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30:30|t|r Reset Talents", Sender(SENDER_RESET), GOSSIP_ACTION_RESET_TALENTS, "Are you sure you want to reset your talents?", 0, false);
             if (hunter)
-                AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_hunter_beasttaming:30:30|t|r Reset Pet Talents", SENDER_RESET, GOSSIP_ACTION_RESET_PET_TALENTS, "Are you sure you want to reset your pet's talents?", 0, false);
+                AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_hunter_beasttaming:30:30|t|r Reset Pet Talents", Sender(SENDER_RESET), GOSSIP_ACTION_RESET_PET_TALENTS, "Are you sure you want to reset your pet's talents?", 0, false);
         }
 
         if (sTemplateNpcMgr->enableRemoveAllGlyphs)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Remove all glyphs", SENDER_RESET, GOSSIP_ACTION_RESET_REMOVE_GLYPHS, "Are you sure you want to remove all your glyphs?", 0, false);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Remove all glyphs", Sender(SENDER_RESET), GOSSIP_ACTION_RESET_REMOVE_GLYPHS, "Are you sure you want to remove all your glyphs?", 0, false);
 
         if (sTemplateNpcMgr->enableDestroyEquippedGear)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_vehicle_launchplayer:30:30|t|r Destroy my equipped gear", SENDER_RESET, GOSSIP_ACTION_RESET_REMOVE_EQUIPPED_GEAR, "Are you sure you want to destroy all your equipped gear?", 0, false);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_vehicle_launchplayer:30:30|t|r Destroy my equipped gear", Sender(SENDER_RESET), GOSSIP_ACTION_RESET_REMOVE_EQUIPPED_GEAR, "Are you sure you want to destroy all your equipped gear?", 0, false);
 
         AddBackItem(player, SENDER_MAIN, GOSSIP_ACTION_ROOT);
         SendGossipMenuFor(player, creature->GetEntry(), creature->GetGUID());
@@ -872,6 +880,13 @@ public:
             return false;
 
         player->PlayerTalkClass->ClearMenus();
+
+        if ((sender & ~0xFFu) != Sender(0))
+        {
+            ShowRootMenu(player, creature);
+            return true;
+        }
+        sender &= 0xFF;
 
         if (sender >= SENDER_APPLY_BASE)
         {

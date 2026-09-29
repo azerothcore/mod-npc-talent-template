@@ -215,7 +215,7 @@ struct GearTemplate
     uint32 prismaticEnchant;
 };
 
-// Gossip menus are told apart by the sender; the action carries the menu's argument.
+// Gossip menus are told apart by the sender's low byte; the action carries the menu's argument.
 //   root       SENDER_MAIN         action = GossipMainActions
 //   category   SENDER_CATEGORY     action = index into the player's category list
 //   build      SENDER_BUILD        action = index into indexContainer
@@ -318,6 +318,7 @@ public:
     GlyphContainer glyphContainer;
     TalentContainer talentContainer;
     IndexContainer indexContainer;
+    uint32 indexReloads = 0;
 
     bool enableResetTalents;
     bool enableRemoveAllGlyphs;
