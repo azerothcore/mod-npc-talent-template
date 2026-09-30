@@ -1,11 +1,11 @@
 -- Batch-generated TBC BiS gear templates
 -- Phase: 1  Mode: pve
--- 27 specs
+-- 30 specs
 
 -- Idempotency: remove this file's templates first so re-application cannot duplicate rows
 -- (the index table has no unique key; without this a re-applied file would append copies).
-DELETE FROM `mod_npc_talent_template_index` WHERE `playerSpec` IN ('Balance70PvEP1BiS', 'Cat70PvEP1BiS', 'Bear70PvEP1BiS', 'Restoration70PvEP1BiS', 'Beastmastery70PvEP1BiS', 'Marksmanship70PvEP1BiS', 'Survival70PvEP1BiS', 'Arcane70PvEP1BiS', 'Fire70PvEP1BiS', 'Frost70PvEP1BiS', 'Holy70PvEP1BiS', 'Protection70PvEP1BiS', 'Retribution70PvEP1BiS', 'Discipline70PvEP1BiS', 'Shadow70PvEP1BiS', 'Assassination70PvEP1BiS', 'Combat70PvEP1BiS', 'Elemental70PvEP1BiS', 'Enhancement70PvEP1BiS', 'Affliction70PvEP1BiS', 'Demonology70PvEP1BiS', 'Destruction70PvEP1BiS', 'Arms70PvEP1BiS', 'Fury70PvEP1BiS');
-DELETE FROM `mod_npc_talent_template_gear` WHERE `playerSpec` IN ('Balance70PvEP1BiS', 'Cat70PvEP1BiS', 'Bear70PvEP1BiS', 'Restoration70PvEP1BiS', 'Beastmastery70PvEP1BiS', 'Marksmanship70PvEP1BiS', 'Survival70PvEP1BiS', 'Arcane70PvEP1BiS', 'Fire70PvEP1BiS', 'Frost70PvEP1BiS', 'Holy70PvEP1BiS', 'Protection70PvEP1BiS', 'Retribution70PvEP1BiS', 'Discipline70PvEP1BiS', 'Shadow70PvEP1BiS', 'Assassination70PvEP1BiS', 'Combat70PvEP1BiS', 'Elemental70PvEP1BiS', 'Enhancement70PvEP1BiS', 'Affliction70PvEP1BiS', 'Demonology70PvEP1BiS', 'Destruction70PvEP1BiS', 'Arms70PvEP1BiS', 'Fury70PvEP1BiS');
+DELETE FROM `mod_npc_talent_template_index` WHERE `playerSpec` IN ('Balance70PvEP1BiS', 'Cat70PvEP1BiS', 'Bear70PvEP1BiS', 'Restoration70PvEP1BiS', 'Beastmastery70PvEP1BiS', 'Marksmanship70PvEP1BiS', 'Survival70PvEP1BiS', 'Arcane70PvEP1BiS', 'Fire70PvEP1BiS', 'Frost70PvEP1BiS', 'Holy70PvEP1BiS', 'Protection70PvEP1BiS', 'Retribution70PvEP1BiS', 'Discipline70PvEP1BiS', 'Shadow70PvEP1BiS', 'Assassination70PvEP1BiS', 'Combat70PvEP1BiS', 'Elemental70PvEP1BiS', 'Enhancement70PvEP1BiS', 'Affliction70PvEP1BiS', 'Demonology70PvEP1BiS', 'Destruction70PvEP1BiS', 'Arms70PvEP1BiS', 'Fury70PvEP1BiS', 'Blood70PvEP1BiS', 'Unholy70PvEP1BiS');
+DELETE FROM `mod_npc_talent_template_gear` WHERE `playerSpec` IN ('Balance70PvEP1BiS', 'Cat70PvEP1BiS', 'Bear70PvEP1BiS', 'Restoration70PvEP1BiS', 'Beastmastery70PvEP1BiS', 'Marksmanship70PvEP1BiS', 'Survival70PvEP1BiS', 'Arcane70PvEP1BiS', 'Fire70PvEP1BiS', 'Frost70PvEP1BiS', 'Holy70PvEP1BiS', 'Protection70PvEP1BiS', 'Retribution70PvEP1BiS', 'Discipline70PvEP1BiS', 'Shadow70PvEP1BiS', 'Assassination70PvEP1BiS', 'Combat70PvEP1BiS', 'Elemental70PvEP1BiS', 'Enhancement70PvEP1BiS', 'Affliction70PvEP1BiS', 'Demonology70PvEP1BiS', 'Destruction70PvEP1BiS', 'Arms70PvEP1BiS', 'Fury70PvEP1BiS', 'Blood70PvEP1BiS', 'Unholy70PvEP1BiS');
 
 SET @MINLEVEL = 70;
 SET @MAXLEVEL = 79;
@@ -14,9 +14,9 @@ SET @RACEMASK_ALL = 1791;
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Druid', 'Balance70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_nature_starfall:30|t|r Use Balance PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Balance70PvE', 'Balance70PvE', 'TBC Phase 1'),
-('Druid', 'Balance70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_nature_starfall:30|t|r Use Balance PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Balance70PvE', 'Balance70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Druid', 'Balance70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_nature_starfall:30|t|r Use Balance PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Balance70PvE', 'Balance70PvE', 'TBC Phase 1', 201),
+('Druid', 'Balance70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_nature_starfall:30|t|r Use Balance PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Balance70PvE', 'Balance70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -36,7 +36,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Druid', 'Balance70PvEP1BiS', @RACEMASK_ALL, 13, 27683, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Balance70PvEP1BiS', @RACEMASK_ALL, 14, 28766, 2621, 0, 0, 0, 0, 0),
 ('Druid', 'Balance70PvEP1BiS', @RACEMASK_ALL, 15, 28770, 2671, 0, 0, 0, 0, 0),
-('Druid', 'Balance70PvEP1BiS', @RACEMASK_ALL, 16, 30723, 0, 2736, 2736, 0, 0, 0),
+('Druid', 'Balance70PvEP1BiS', @RACEMASK_ALL, 16, 29271, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Balance70PvEP1BiS', @RACEMASK_ALL, 17, 27518, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -44,9 +44,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Druid', 'Cat70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_druid_catform:30|t|r Use Cat PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Cat70PvE', 'Cat70PvE', 'TBC Phase 1'),
-('Druid', 'Cat70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_druid_catform:30|t|r Use Cat PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Cat70PvE', 'Cat70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Druid', 'Cat70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_druid_catform:30|t|r Use Cat PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Cat70PvE', 'Cat70PvE', 'TBC Phase 1', 201),
+('Druid', 'Cat70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_druid_catform:30|t|r Use Cat PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Cat70PvE', 'Cat70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -66,7 +66,6 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Druid', 'Cat70PvEP1BiS', @RACEMASK_ALL, 13, 28830, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Cat70PvEP1BiS', @RACEMASK_ALL, 14, 28672, 368, 0, 0, 0, 0, 0),
 ('Druid', 'Cat70PvEP1BiS', @RACEMASK_ALL, 15, 28658, 2673, 0, 0, 0, 0, 0),
-('Druid', 'Cat70PvEP1BiS', @RACEMASK_ALL, 16, 28476, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Cat70PvEP1BiS', @RACEMASK_ALL, 17, 29390, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -74,9 +73,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Druid', 'Bear70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_racial_bearform:30|t|r Use Bear PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Bear70PvE', 'Bear70PvE', 'TBC Phase 1'),
-('Druid', 'Bear70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_racial_bearform:30|t|r Use Bear PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Bear70PvE', 'Bear70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Druid', 'Bear70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_racial_bearform:30|t|r Use Bear PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Bear70PvE', 'Bear70PvE', 'TBC Phase 1', 201),
+('Druid', 'Bear70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_racial_bearform:30|t|r Use Bear PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Bear70PvE', 'Bear70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -96,7 +95,6 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Druid', 'Bear70PvEP1BiS', @RACEMASK_ALL, 13, 28830, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Bear70PvEP1BiS', @RACEMASK_ALL, 14, 28660, 368, 0, 0, 0, 0, 0),
 ('Druid', 'Bear70PvEP1BiS', @RACEMASK_ALL, 15, 28658, 2673, 0, 0, 0, 0, 0),
-('Druid', 'Bear70PvEP1BiS', @RACEMASK_ALL, 16, 28476, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Bear70PvEP1BiS', @RACEMASK_ALL, 17, 23198, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -104,9 +102,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Druid', 'Restoration70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_nature_healingtouch:30|t|r Use Restoration PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Restoration70PvE', 'Restoration70PvE', 'TBC Phase 1'),
-('Druid', 'Restoration70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_nature_healingtouch:30|t|r Use Restoration PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Restoration70PvE', 'Restoration70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Druid', 'Restoration70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_nature_healingtouch:30|t|r Use Restoration PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Restoration70PvE', 'Restoration70PvE', 'TBC Phase 1', 201),
+('Druid', 'Restoration70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_nature_healingtouch:30|t|r Use Restoration PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Restoration70PvE', 'Restoration70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -126,7 +124,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Druid', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 13, 25634, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 14, 28765, 2621, 0, 0, 0, 0, 0),
 ('Druid', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 15, 28771, 2505, 0, 0, 0, 0, 0),
-('Druid', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 16, 30732, 0, 2740, 2740, 2734, 0, 0),
+('Druid', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 16, 29274, 0, 0, 0, 0, 0, 0),
 ('Druid', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 17, 27886, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -134,9 +132,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Hunter', 'Beastmastery70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_hunter_beasttaming:30|t|r Use Beastmastery PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Beastmastery70PvE', 'Beastmastery70PvE', 'TBC Phase 1'),
-('Hunter', 'Beastmastery70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_hunter_beasttaming:30|t|r Use Beastmastery PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Beastmastery70PvE', 'Beastmastery70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Hunter', 'Beastmastery70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_hunter_beasttaming:30|t|r Use Beastmastery PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Beastmastery70PvE', 'Beastmastery70PvE', 'TBC Phase 1', 201),
+('Hunter', 'Beastmastery70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_hunter_beasttaming:30|t|r Use Beastmastery PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Beastmastery70PvE', 'Beastmastery70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -155,6 +153,8 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Hunter', 'Beastmastery70PvEP1BiS', @RACEMASK_ALL, 12, 28830, 0, 0, 0, 0, 0, 0),
 ('Hunter', 'Beastmastery70PvEP1BiS', @RACEMASK_ALL, 13, 29383, 0, 0, 0, 0, 0, 0),
 ('Hunter', 'Beastmastery70PvEP1BiS', @RACEMASK_ALL, 14, 24259, 368, 2726, 0, 0, 0, 0),
+('Hunter', 'Beastmastery70PvEP1BiS', @RACEMASK_ALL, 15, 27846, 2670, 2731, 2726, 0, 0, 0),
+('Hunter', 'Beastmastery70PvEP1BiS', @RACEMASK_ALL, 16, 28572, 0, 2726, 2764, 2731, 0, 0),
 ('Hunter', 'Beastmastery70PvEP1BiS', @RACEMASK_ALL, 17, 28772, 2724, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -162,9 +162,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Hunter', 'Marksmanship70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_marksmanship:30|t|r Use Marksmanship PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Marksmanship70PvE', 'Marksmanship70PvE', 'TBC Phase 1'),
-('Hunter', 'Marksmanship70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_marksmanship:30|t|r Use Marksmanship PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Marksmanship70PvE', 'Marksmanship70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Hunter', 'Marksmanship70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_marksmanship:30|t|r Use Marksmanship PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Marksmanship70PvE', 'Marksmanship70PvE', 'TBC Phase 1', 201),
+('Hunter', 'Marksmanship70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_marksmanship:30|t|r Use Marksmanship PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Marksmanship70PvE', 'Marksmanship70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -184,7 +184,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Hunter', 'Marksmanship70PvEP1BiS', @RACEMASK_ALL, 13, 29383, 0, 0, 0, 0, 0, 0),
 ('Hunter', 'Marksmanship70PvEP1BiS', @RACEMASK_ALL, 14, 24259, 368, 2726, 0, 0, 0, 0),
 ('Hunter', 'Marksmanship70PvEP1BiS', @RACEMASK_ALL, 15, 27846, 2670, 2731, 2726, 0, 0, 0),
-('Hunter', 'Marksmanship70PvEP1BiS', @RACEMASK_ALL, 16, 28572, 0, 2726, 2764, 2731, 0, 0),
+('Hunter', 'Marksmanship70PvEP1BiS', @RACEMASK_ALL, 16, 28315, 0, 0, 0, 0, 0, 0),
 ('Hunter', 'Marksmanship70PvEP1BiS', @RACEMASK_ALL, 17, 28772, 2724, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -192,9 +192,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Hunter', 'Survival70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_Hunter_swiftstrike:30|t|r Use Survival PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Survival70PvE', 'Survival70PvE', 'TBC Phase 1'),
-('Hunter', 'Survival70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_Hunter_swiftstrike:30|t|r Use Survival PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Survival70PvE', 'Survival70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Hunter', 'Survival70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_Hunter_swiftstrike:30|t|r Use Survival PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Survival70PvE', 'Survival70PvE', 'TBC Phase 1', 201),
+('Hunter', 'Survival70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_Hunter_swiftstrike:30|t|r Use Survival PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Survival70PvE', 'Survival70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -214,7 +214,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Hunter', 'Survival70PvEP1BiS', @RACEMASK_ALL, 13, 29383, 0, 0, 0, 0, 0, 0),
 ('Hunter', 'Survival70PvEP1BiS', @RACEMASK_ALL, 14, 28672, 368, 0, 0, 0, 0, 0),
 ('Hunter', 'Survival70PvEP1BiS', @RACEMASK_ALL, 15, 28263, 2670, 0, 0, 0, 0, 0),
-('Hunter', 'Survival70PvEP1BiS', @RACEMASK_ALL, 16, 27846, 0, 2731, 2726, 0, 0, 0),
+('Hunter', 'Survival70PvEP1BiS', @RACEMASK_ALL, 16, 28572, 0, 2726, 2764, 2731, 0, 0),
 ('Hunter', 'Survival70PvEP1BiS', @RACEMASK_ALL, 17, 28772, 2724, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -222,9 +222,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Mage', 'Arcane70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_magicalsentry:30|t|r Use Arcane PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Arcane70PvE', 'Arcane70PvE', 'TBC Phase 1'),
-('Mage', 'Arcane70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_magicalsentry:30|t|r Use Arcane PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Arcane70PvE', 'Arcane70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Mage', 'Arcane70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_magicalsentry:30|t|r Use Arcane PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Arcane70PvE', 'Arcane70PvE', 'TBC Phase 1', 201),
+('Mage', 'Arcane70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_magicalsentry:30|t|r Use Arcane PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Arcane70PvE', 'Arcane70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -244,7 +244,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Mage', 'Arcane70PvEP1BiS', @RACEMASK_ALL, 13, 29370, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Arcane70PvEP1BiS', @RACEMASK_ALL, 14, 28797, 2621, 0, 0, 0, 0, 0),
 ('Mage', 'Arcane70PvEP1BiS', @RACEMASK_ALL, 15, 30723, 2671, 2736, 2736, 0, 0, 0),
-('Mage', 'Arcane70PvEP1BiS', @RACEMASK_ALL, 16, 28802, 0, 0, 0, 0, 0, 0),
+('Mage', 'Arcane70PvEP1BiS', @RACEMASK_ALL, 16, 29271, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Arcane70PvEP1BiS', @RACEMASK_ALL, 17, 28783, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -252,9 +252,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Mage', 'Fire70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_fire_flamebolt:30|t|r Use Fire PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Fire70PvE', 'Fire70PvE', 'TBC Phase 1'),
-('Mage', 'Fire70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_fire_flamebolt:30|t|r Use Fire PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Fire70PvE', 'Fire70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Mage', 'Fire70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_fire_flamebolt:30|t|r Use Fire PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Fire70PvE', 'Fire70PvE', 'TBC Phase 1', 201),
+('Mage', 'Fire70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_fire_flamebolt:30|t|r Use Fire PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Fire70PvE', 'Fire70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -274,7 +274,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Mage', 'Fire70PvEP1BiS', @RACEMASK_ALL, 13, 27683, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Fire70PvEP1BiS', @RACEMASK_ALL, 14, 28766, 2621, 0, 0, 0, 0, 0),
 ('Mage', 'Fire70PvEP1BiS', @RACEMASK_ALL, 15, 30723, 2671, 2736, 2736, 0, 0, 0),
-('Mage', 'Fire70PvEP1BiS', @RACEMASK_ALL, 16, 28802, 0, 0, 0, 0, 0, 0),
+('Mage', 'Fire70PvEP1BiS', @RACEMASK_ALL, 16, 28734, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Fire70PvEP1BiS', @RACEMASK_ALL, 17, 28673, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -282,9 +282,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Mage', 'Frost70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_frost_frostbolt02:30|t|r Use Frost PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Frost70PvE', 'Frost70PvE', 'TBC Phase 1'),
-('Mage', 'Frost70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_frost_frostbolt02:30|t|r Use Frost PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Frost70PvE', 'Frost70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Mage', 'Frost70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_frost_frostbolt02:30|t|r Use Frost PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Frost70PvE', 'Frost70PvE', 'TBC Phase 1', 201),
+('Mage', 'Frost70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_frost_frostbolt02:30|t|r Use Frost PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Frost70PvE', 'Frost70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -304,7 +304,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Mage', 'Frost70PvEP1BiS', @RACEMASK_ALL, 13, 27683, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Frost70PvEP1BiS', @RACEMASK_ALL, 14, 28766, 2621, 0, 0, 0, 0, 0),
 ('Mage', 'Frost70PvEP1BiS', @RACEMASK_ALL, 15, 30723, 2672, 2736, 2736, 0, 0, 0),
-('Mage', 'Frost70PvEP1BiS', @RACEMASK_ALL, 16, 28802, 0, 0, 0, 0, 0, 0),
+('Mage', 'Frost70PvEP1BiS', @RACEMASK_ALL, 16, 29269, 0, 0, 0, 0, 0, 0),
 ('Mage', 'Frost70PvEP1BiS', @RACEMASK_ALL, 17, 28783, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -312,9 +312,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Paladin', 'Holy70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Holy70PvE', 'Holy70PvE', 'TBC Phase 1'),
-('Paladin', 'Holy70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Holy70PvE', 'Holy70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Paladin', 'Holy70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Holy70PvE', 'Holy70PvE', 'TBC Phase 1', 201),
+('Paladin', 'Holy70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Holy70PvE', 'Holy70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -342,9 +342,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Paladin', 'Protection70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_devotionaura:30|t|r Use Protection PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Protection70PvE', 'Protection70PvE', 'TBC Phase 1'),
-('Paladin', 'Protection70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_devotionaura:30|t|r Use Protection PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Protection70PvE', 'Protection70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Paladin', 'Protection70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_devotionaura:30|t|r Use Protection PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Protection70PvE', 'Protection70PvE', 'TBC Phase 1', 201),
+('Paladin', 'Protection70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_devotionaura:30|t|r Use Protection PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Protection70PvE', 'Protection70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -363,8 +363,8 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Paladin', 'Protection70PvEP1BiS', @RACEMASK_ALL, 12, 27529, 0, 0, 0, 0, 0, 0),
 ('Paladin', 'Protection70PvEP1BiS', @RACEMASK_ALL, 13, 28528, 0, 0, 0, 0, 0, 0),
 ('Paladin', 'Protection70PvEP1BiS', @RACEMASK_ALL, 14, 27804, 368, 0, 0, 0, 0, 0),
-('Paladin', 'Protection70PvEP1BiS', @RACEMASK_ALL, 15, 32450, 2673, 0, 0, 0, 0, 0),
-('Paladin', 'Protection70PvEP1BiS', @RACEMASK_ALL, 16, 28802, 929, 0, 0, 0, 0, 0),
+('Paladin', 'Protection70PvEP1BiS', @RACEMASK_ALL, 15, 28802, 2673, 0, 0, 0, 0, 0),
+('Paladin', 'Protection70PvEP1BiS', @RACEMASK_ALL, 16, 28825, 929, 2731, 0, 0, 0, 0),
 ('Paladin', 'Protection70PvEP1BiS', @RACEMASK_ALL, 17, 29388, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -372,9 +372,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Paladin', 'Retribution70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_auraoflight:30|t|r Use Retribution PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Retribution70PvE', 'Retribution70PvE', 'TBC Phase 1'),
-('Paladin', 'Retribution70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_auraoflight:30|t|r Use Retribution PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Retribution70PvE', 'Retribution70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Paladin', 'Retribution70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_auraoflight:30|t|r Use Retribution PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Retribution70PvE', 'Retribution70PvE', 'TBC Phase 1', 201),
+('Paladin', 'Retribution70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_auraoflight:30|t|r Use Retribution PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Retribution70PvE', 'Retribution70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -391,10 +391,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Paladin', 'Retribution70PvEP1BiS', @RACEMASK_ALL, 10, 30834, 0, 0, 0, 0, 0, 0),
 ('Paladin', 'Retribution70PvEP1BiS', @RACEMASK_ALL, 11, 28757, 0, 0, 0, 0, 0, 0),
 ('Paladin', 'Retribution70PvEP1BiS', @RACEMASK_ALL, 12, 28830, 0, 0, 0, 0, 0, 0),
-('Paladin', 'Retribution70PvEP1BiS', @RACEMASK_ALL, 13, 19343, 0, 0, 0, 0, 0, 0),
+('Paladin', 'Retribution70PvEP1BiS', @RACEMASK_ALL, 13, 29383, 0, 0, 0, 0, 0, 0),
 ('Paladin', 'Retribution70PvEP1BiS', @RACEMASK_ALL, 14, 24259, 368, 2725, 0, 0, 0, 0),
 ('Paladin', 'Retribution70PvEP1BiS', @RACEMASK_ALL, 15, 28429, 2667, 0, 0, 0, 0, 0),
-('Paladin', 'Retribution70PvEP1BiS', @RACEMASK_ALL, 16, 28441, 0, 0, 0, 0, 0, 0),
 ('Paladin', 'Retribution70PvEP1BiS', @RACEMASK_ALL, 17, 27484, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -402,9 +401,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Priest', 'Discipline70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_wordfortitude:30|t|r Use Discipline PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Discipline70PvE', 'Discipline70PvE', 'TBC Phase 1'),
-('Priest', 'Discipline70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_wordfortitude:30|t|r Use Discipline PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Discipline70PvE', 'Discipline70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Priest', 'Discipline70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_wordfortitude:30|t|r Use Discipline PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Discipline70PvE', 'Discipline70PvE', 'TBC Phase 1', 201),
+('Priest', 'Discipline70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_wordfortitude:30|t|r Use Discipline PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Discipline70PvE', 'Discipline70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -424,7 +423,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Priest', 'Discipline70PvEP1BiS', @RACEMASK_ALL, 13, 28823, 0, 0, 0, 0, 0, 0),
 ('Priest', 'Discipline70PvEP1BiS', @RACEMASK_ALL, 14, 28765, 2621, 0, 0, 0, 0, 0),
 ('Priest', 'Discipline70PvEP1BiS', @RACEMASK_ALL, 15, 28771, 2505, 0, 0, 0, 0, 0),
-('Priest', 'Discipline70PvEP1BiS', @RACEMASK_ALL, 16, 30732, 907, 2740, 2740, 2734, 0, 0),
+('Priest', 'Discipline70PvEP1BiS', @RACEMASK_ALL, 16, 29170, 0, 0, 0, 0, 0, 0),
 ('Priest', 'Discipline70PvEP1BiS', @RACEMASK_ALL, 17, 28588, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -432,9 +431,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Priest', 'Holy70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Holy70PvE', 'Holy70PvE', 'TBC Phase 1'),
-('Priest', 'Holy70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Holy70PvE', 'Holy70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Priest', 'Holy70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Holy70PvE', 'Holy70PvE', 'TBC Phase 1', 201),
+('Priest', 'Holy70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_holy_holybolt:30|t|r Use Holy PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Holy70PvE', 'Holy70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -454,16 +453,17 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Priest', 'Holy70PvEP1BiS', @RACEMASK_ALL, 13, 28823, 0, 0, 0, 0, 0, 0),
 ('Priest', 'Holy70PvEP1BiS', @RACEMASK_ALL, 14, 28765, 2621, 0, 0, 0, 0, 0),
 ('Priest', 'Holy70PvEP1BiS', @RACEMASK_ALL, 15, 28771, 2505, 0, 0, 0, 0, 0),
-('Priest', 'Holy70PvEP1BiS', @RACEMASK_ALL, 16, 30732, 907, 2740, 2740, 2734, 0, 0);
+('Priest', 'Holy70PvEP1BiS', @RACEMASK_ALL, 16, 29170, 0, 0, 0, 0, 0, 0),
+('Priest', 'Holy70PvEP1BiS', @RACEMASK_ALL, 17, 28588, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
 -- ===== Priest Shadow70PvEP1BiS =====
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Priest', 'Shadow70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_shadow_shadowwordpain:30|t|r Use Shadow PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Shadow70PvE', 'Shadow70PvE', 'TBC Phase 1'),
-('Priest', 'Shadow70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_shadow_shadowwordpain:30|t|r Use Shadow PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Shadow70PvE', 'Shadow70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Priest', 'Shadow70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_shadow_shadowwordpain:30|t|r Use Shadow PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Shadow70PvE', 'Shadow70PvE', 'TBC Phase 1', 201),
+('Priest', 'Shadow70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_shadow_shadowwordpain:30|t|r Use Shadow PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Shadow70PvE', 'Shadow70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -475,13 +475,15 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 5, 28799, 0, 2736, 2740, 0, 0, 0),
 ('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 6, 24262, 2748, 2740, 2736, 2728, 0, 0),
 ('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 7, 21870, 2656, 2736, 2740, 0, 0, 0),
+('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 8, 24250, 2650, 2736, 0, 0, 0, 0),
 ('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 9, 28507, 2322, 2736, 2740, 0, 0, 0),
 ('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 10, 21709, 0, 0, 0, 0, 0, 0),
 ('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 11, 23031, 0, 0, 0, 0, 0, 0),
 ('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 12, 29370, 0, 0, 0, 0, 0, 0),
 ('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 13, 27683, 0, 0, 0, 0, 0, 0),
+('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 14, 28570, 2621, 0, 0, 0, 0, 0),
 ('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 15, 28770, 2672, 0, 0, 0, 0, 0),
-('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 16, 30723, 0, 2736, 2736, 0, 0, 0),
+('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 16, 29272, 0, 0, 0, 0, 0, 0),
 ('Priest', 'Shadow70PvEP1BiS', @RACEMASK_ALL, 17, 29350, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -489,9 +491,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Rogue', 'Assassination70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Assassination PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Assassination70PvE', 'Assassination70PvE', 'TBC Phase 1'),
-('Rogue', 'Assassination70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Assassination PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Assassination70PvE', 'Assassination70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Rogue', 'Assassination70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Assassination PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Assassination70PvE', 'Assassination70PvE', 'TBC Phase 1', 201),
+('Rogue', 'Assassination70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Assassination PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Assassination70PvE', 'Assassination70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -511,7 +513,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Rogue', 'Assassination70PvEP1BiS', @RACEMASK_ALL, 13, 23206, 0, 0, 0, 0, 0, 0),
 ('Rogue', 'Assassination70PvEP1BiS', @RACEMASK_ALL, 14, 28672, 368, 0, 0, 0, 0, 0),
 ('Rogue', 'Assassination70PvEP1BiS', @RACEMASK_ALL, 15, 28438, 2673, 0, 0, 0, 0, 0),
-('Rogue', 'Assassination70PvEP1BiS', @RACEMASK_ALL, 16, 28295, 2673, 0, 0, 0, 0, 0),
+('Rogue', 'Assassination70PvEP1BiS', @RACEMASK_ALL, 16, 28307, 2673, 0, 0, 0, 0, 0),
 ('Rogue', 'Assassination70PvEP1BiS', @RACEMASK_ALL, 17, 29151, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -519,9 +521,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Rogue', 'Combat70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_backstab:30|t|r Use Combat PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Combat70PvE', 'Combat70PvE', 'TBC Phase 1'),
-('Rogue', 'Combat70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_backstab:30|t|r Use Combat PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Combat70PvE', 'Combat70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Rogue', 'Combat70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_backstab:30|t|r Use Combat PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Combat70PvE', 'Combat70PvE', 'TBC Phase 1', 201),
+('Rogue', 'Combat70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_backstab:30|t|r Use Combat PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Combat70PvE', 'Combat70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -541,7 +543,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Rogue', 'Combat70PvEP1BiS', @RACEMASK_ALL, 13, 23206, 0, 0, 0, 0, 0, 0),
 ('Rogue', 'Combat70PvEP1BiS', @RACEMASK_ALL, 14, 28672, 368, 0, 0, 0, 0, 0),
 ('Rogue', 'Combat70PvEP1BiS', @RACEMASK_ALL, 15, 28438, 2673, 0, 0, 0, 0, 0),
-('Rogue', 'Combat70PvEP1BiS', @RACEMASK_ALL, 16, 28295, 2673, 0, 0, 0, 0, 0),
+('Rogue', 'Combat70PvEP1BiS', @RACEMASK_ALL, 16, 28307, 2673, 0, 0, 0, 0, 0),
 ('Rogue', 'Combat70PvEP1BiS', @RACEMASK_ALL, 17, 29151, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -549,9 +551,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Shaman', 'Elemental70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_nature_lightning:30|t|r Use Elemental PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Elemental70PvE', 'Elemental70PvE', 'TBC Phase 1'),
-('Shaman', 'Elemental70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_nature_lightning:30|t|r Use Elemental PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Elemental70PvE', 'Elemental70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Shaman', 'Elemental70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_nature_lightning:30|t|r Use Elemental PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Elemental70PvE', 'Elemental70PvE', 'TBC Phase 1', 201),
+('Shaman', 'Elemental70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_nature_lightning:30|t|r Use Elemental PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Elemental70PvE', 'Elemental70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -571,7 +573,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Shaman', 'Elemental70PvEP1BiS', @RACEMASK_ALL, 13, 29370, 0, 0, 0, 0, 0, 0),
 ('Shaman', 'Elemental70PvEP1BiS', @RACEMASK_ALL, 14, 28797, 2621, 0, 0, 0, 0, 0),
 ('Shaman', 'Elemental70PvEP1BiS', @RACEMASK_ALL, 15, 30723, 2671, 2736, 2736, 0, 0, 0),
-('Shaman', 'Elemental70PvEP1BiS', @RACEMASK_ALL, 16, 28770, 929, 0, 0, 0, 0, 0),
+('Shaman', 'Elemental70PvEP1BiS', @RACEMASK_ALL, 16, 29273, 0, 0, 0, 0, 0, 0),
 ('Shaman', 'Elemental70PvEP1BiS', @RACEMASK_ALL, 17, 28248, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -579,9 +581,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Shaman', 'Enhancement70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_nature_lightningshield:30|t|r Use Enhancement PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Enhancement70PvE', 'Enhancement70PvE', 'TBC Phase 1'),
-('Shaman', 'Enhancement70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_nature_lightningshield:30|t|r Use Enhancement PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Enhancement70PvE', 'Enhancement70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Shaman', 'Enhancement70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_nature_lightningshield:30|t|r Use Enhancement PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Enhancement70PvE', 'Enhancement70PvE', 'TBC Phase 1', 201),
+('Shaman', 'Enhancement70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_nature_lightningshield:30|t|r Use Enhancement PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Enhancement70PvE', 'Enhancement70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -609,9 +611,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Shaman', 'Restoration70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_nature_magicimmunity:30|t|r Use Restoration PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Restoration70PvE', 'Restoration70PvE', 'TBC Phase 1'),
-('Shaman', 'Restoration70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_nature_magicimmunity:30|t|r Use Restoration PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Restoration70PvE', 'Restoration70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Shaman', 'Restoration70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_nature_magicimmunity:30|t|r Use Restoration PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Restoration70PvE', 'Restoration70PvE', 'TBC Phase 1', 201),
+('Shaman', 'Restoration70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_nature_magicimmunity:30|t|r Use Restoration PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Restoration70PvE', 'Restoration70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -631,7 +633,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Shaman', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 13, 28590, 0, 0, 0, 0, 0, 0),
 ('Shaman', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 14, 28765, 2621, 0, 0, 0, 0, 0),
 ('Shaman', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 15, 28771, 2505, 0, 0, 0, 0, 0),
-('Shaman', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 16, 30732, 907, 2740, 2740, 2734, 0, 0),
+('Shaman', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 16, 29274, 0, 0, 0, 0, 0, 0),
 ('Shaman', 'Restoration70PvEP1BiS', @RACEMASK_ALL, 17, 28523, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -639,9 +641,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Warlock', 'Affliction70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_shadow_deathcoil:30|t|r Use Affliction PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Affliction70PvE', 'Affliction70PvE', 'TBC Phase 1'),
-('Warlock', 'Affliction70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_shadow_deathcoil:30|t|r Use Affliction PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Affliction70PvE', 'Affliction70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Warlock', 'Affliction70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_shadow_deathcoil:30|t|r Use Affliction PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Affliction70PvE', 'Affliction70PvE', 'TBC Phase 1', 201),
+('Warlock', 'Affliction70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_shadow_deathcoil:30|t|r Use Affliction PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Affliction70PvE', 'Affliction70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -661,7 +663,6 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Warlock', 'Affliction70PvEP1BiS', @RACEMASK_ALL, 13, 29370, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Affliction70PvEP1BiS', @RACEMASK_ALL, 14, 28766, 2621, 0, 0, 0, 0, 0),
 ('Warlock', 'Affliction70PvEP1BiS', @RACEMASK_ALL, 15, 22630, 2672, 0, 0, 0, 0, 0),
-('Warlock', 'Affliction70PvEP1BiS', @RACEMASK_ALL, 16, 30723, 0, 2736, 2736, 0, 0, 0),
 ('Warlock', 'Affliction70PvEP1BiS', @RACEMASK_ALL, 17, 28673, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -669,9 +670,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Warlock', 'Demonology70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_shadow_metamorphosis:30|t|r Use Demonology PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Demonology70PvE', 'Demonology70PvE', 'TBC Phase 1'),
-('Warlock', 'Demonology70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_shadow_metamorphosis:30|t|r Use Demonology PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Demonology70PvE', 'Demonology70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Warlock', 'Demonology70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_shadow_metamorphosis:30|t|r Use Demonology PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Demonology70PvE', 'Demonology70PvE', 'TBC Phase 1', 201),
+('Warlock', 'Demonology70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_shadow_metamorphosis:30|t|r Use Demonology PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Demonology70PvE', 'Demonology70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -691,7 +692,6 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Warlock', 'Demonology70PvEP1BiS', @RACEMASK_ALL, 13, 29370, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Demonology70PvEP1BiS', @RACEMASK_ALL, 14, 28766, 2621, 0, 0, 0, 0, 0),
 ('Warlock', 'Demonology70PvEP1BiS', @RACEMASK_ALL, 15, 22630, 2672, 0, 0, 0, 0, 0),
-('Warlock', 'Demonology70PvEP1BiS', @RACEMASK_ALL, 16, 30723, 0, 2736, 2736, 0, 0, 0),
 ('Warlock', 'Demonology70PvEP1BiS', @RACEMASK_ALL, 17, 28673, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -699,9 +699,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Warlock', 'Destruction70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_shadow_rainoffire:30|t|r Use Destruction PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Destruction70PvE', 'Destruction70PvE', 'TBC Phase 1'),
-('Warlock', 'Destruction70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_shadow_rainoffire:30|t|r Use Destruction PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Destruction70PvE', 'Destruction70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Warlock', 'Destruction70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_shadow_rainoffire:30|t|r Use Destruction PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Destruction70PvE', 'Destruction70PvE', 'TBC Phase 1', 201),
+('Warlock', 'Destruction70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_shadow_rainoffire:30|t|r Use Destruction PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Destruction70PvE', 'Destruction70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -721,7 +721,6 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Warlock', 'Destruction70PvEP1BiS', @RACEMASK_ALL, 13, 29370, 0, 0, 0, 0, 0, 0),
 ('Warlock', 'Destruction70PvEP1BiS', @RACEMASK_ALL, 14, 28766, 2621, 0, 0, 0, 0, 0),
 ('Warlock', 'Destruction70PvEP1BiS', @RACEMASK_ALL, 15, 22630, 2671, 0, 0, 0, 0, 0),
-('Warlock', 'Destruction70PvEP1BiS', @RACEMASK_ALL, 16, 30723, 0, 2736, 2736, 0, 0, 0),
 ('Warlock', 'Destruction70PvEP1BiS', @RACEMASK_ALL, 17, 28673, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -729,9 +728,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Warrior', 'Arms70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'Arms70PvE', 'TBC Phase 1'),
-('Warrior', 'Arms70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'Arms70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Warrior', 'Arms70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'ArmsSword70PvE', 'TBC Phase 1', 201),
+('Warrior', 'Arms70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_rogue_eviscerate:30|t|r Use Arms PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Arms70PvE', 'ArmsSword70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -750,6 +749,7 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Warrior', 'Arms70PvEP1BiS', @RACEMASK_ALL, 12, 21670, 0, 0, 0, 0, 0, 0),
 ('Warrior', 'Arms70PvEP1BiS', @RACEMASK_ALL, 13, 29383, 0, 0, 0, 0, 0, 0),
 ('Warrior', 'Arms70PvEP1BiS', @RACEMASK_ALL, 14, 30729, 368, 0, 0, 0, 0, 0),
+('Warrior', 'Arms70PvEP1BiS', @RACEMASK_ALL, 15, 28429, 2667, 0, 0, 0, 0, 0),
 ('Warrior', 'Arms70PvEP1BiS', @RACEMASK_ALL, 17, 30724, 0, 2725, 2725, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -757,9 +757,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Warrior', 'Fury70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_warrior_innerrage:30|t|r Use Fury PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Fury70PvE', 'Fury70PvE', 'TBC Phase 1'),
-('Warrior', 'Fury70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_warrior_innerrage:30|t|r Use Fury PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Fury70PvE', 'Fury70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Warrior', 'Fury70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_warrior_innerrage:30|t|r Use Fury PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Fury70PvE', 'Fury70PvE', 'TBC Phase 1', 201),
+('Warrior', 'Fury70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_warrior_innerrage:30|t|r Use Fury PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Fury70PvE', 'Fury70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -778,6 +778,8 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Warrior', 'Fury70PvEP1BiS', @RACEMASK_ALL, 12, 21670, 0, 0, 0, 0, 0, 0),
 ('Warrior', 'Fury70PvEP1BiS', @RACEMASK_ALL, 13, 29383, 0, 0, 0, 0, 0, 0),
 ('Warrior', 'Fury70PvEP1BiS', @RACEMASK_ALL, 14, 30729, 368, 0, 0, 0, 0, 0),
+('Warrior', 'Fury70PvEP1BiS', @RACEMASK_ALL, 15, 28438, 2673, 0, 0, 0, 0, 0),
+('Warrior', 'Fury70PvEP1BiS', @RACEMASK_ALL, 16, 28295, 2673, 0, 0, 0, 0, 0),
 ('Warrior', 'Fury70PvEP1BiS', @RACEMASK_ALL, 17, 30724, 0, 2725, 2725, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 
@@ -785,9 +787,9 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
-INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`) VALUES
-('Warrior', 'Protection70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_warrior_defensivestance:30|t|r Use Protection PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Protection70PvE', 'Protection70PvE', 'TBC Phase 1'),
-('Warrior', 'Protection70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_warrior_defensivestance:30|t|r Use Protection PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Protection70PvE', 'Protection70PvE', 'TBC Phase 1');
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Warrior', 'Protection70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\ability_warrior_defensivestance:30|t|r Use Protection PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Protection70PvE', 'Protection70PvE', 'TBC Phase 1', 201),
+('Warrior', 'Protection70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\ability_warrior_defensivestance:30|t|r Use Protection PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Protection70PvE', 'Protection70PvE', 'TBC Phase 1', 201);
 /*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
@@ -807,7 +809,95 @@ INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `player
 ('Warrior', 'Protection70PvEP1BiS', @RACEMASK_ALL, 13, 23835, 0, 0, 0, 0, 0, 0),
 ('Warrior', 'Protection70PvEP1BiS', @RACEMASK_ALL, 14, 28672, 368, 0, 0, 0, 0, 0),
 ('Warrior', 'Protection70PvEP1BiS', @RACEMASK_ALL, 15, 28438, 2673, 0, 0, 0, 0, 0),
-('Warrior', 'Protection70PvEP1BiS', @RACEMASK_ALL, 16, 28749, 929, 0, 0, 0, 0, 0),
+('Warrior', 'Protection70PvEP1BiS', @RACEMASK_ALL, 16, 28825, 929, 2731, 0, 0, 0, 0),
 ('Warrior', 'Protection70PvEP1BiS', @RACEMASK_ALL, 17, 30724, 0, 2725, 2725, 0, 0, 0);
+/*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
+
+-- ===== Death Knight Blood70PvEP1BiS =====
+SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
+
+/*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Death Knight', 'Blood70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_deathknight_bloodpresence:30|t|r Use Blood PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Blood70PvE', 'Blood70PvE', 'TBC Phase 1', 201),
+('Death Knight', 'Blood70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_deathknight_bloodpresence:30|t|r Use Blood PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Blood70PvE', 'Blood70PvE', 'TBC Phase 1', 201);
+/*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
+INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `playerRaceMask`, `pos`, `itemEntry`, `enchant`, `socket1`, `socket2`, `socket3`, `bonusEnchant`, `prismaticEnchant`) VALUES
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 0, 30731, 2999, 2731, 2737, 2737, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 1, 29386, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 2, 28743, 2991, 2725, 2737, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 4, 28597, 2661, 2737, 2731, 2731, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 5, 28995, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 6, 28621, 3011, 2725, 2737, 2737, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 7, 28747, 2940, 2725, 2731, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 8, 28502, 2648, 2737, 0, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 9, 30741, 2564, 2737, 2731, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 10, 29279, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 11, 30834, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 12, 23836, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 13, 23835, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 14, 28672, 368, 0, 0, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 15, 28429, 2673, 0, 0, 0, 0, 0),
+('Death Knight', 'Blood70PvEP1BiS', @RACEMASK_ALL, 17, 39208, 0, 0, 0, 0, 0, 0);
+/*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
+
+-- ===== Death Knight Frost70PvEP1BiS =====
+SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
+
+/*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Death Knight', 'Frost70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_deathknight_frostpresence:30|t|r Use Frost PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Frost70PvE', 'Frost70PvE', 'TBC Phase 1', 201),
+('Death Knight', 'Frost70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_deathknight_frostpresence:30|t|r Use Frost PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Frost70PvE', 'Frost70PvE', 'TBC Phase 1', 201);
+/*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
+INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `playerRaceMask`, `pos`, `itemEntry`, `enchant`, `socket1`, `socket2`, `socket3`, `bonusEnchant`, `prismaticEnchant`) VALUES
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 0, 32087, 3003, 2735, 2834, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 1, 29349, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 2, 30740, 2986, 2735, 2735, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 4, 30730, 2661, 2725, 2735, 2735, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 5, 28779, 0, 2725, 2731, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 6, 30739, 3012, 2725, 2725, 2725, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 7, 28608, 2939, 2725, 2735, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 8, 28795, 2647, 2731, 2725, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 9, 28824, 684, 2731, 2735, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 10, 30738, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 11, 28757, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 12, 21670, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 13, 29383, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 14, 30729, 368, 0, 0, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 15, 28438, 2673, 0, 0, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 16, 28295, 2673, 0, 0, 0, 0, 0),
+('Death Knight', 'Frost70PvEP1BiS', @RACEMASK_ALL, 17, 39208, 0, 0, 0, 0, 0, 0);
+/*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
+
+-- ===== Death Knight Unholy70PvEP1BiS =====
+SET @ACTION = COALESCE((SELECT MAX(`gossipAction`) + 1 FROM `mod_npc_talent_template_index`), 0);
+
+/*!40000 ALTER TABLE `mod_npc_talent_template_index` DISABLE KEYS */;
+INSERT INTO `mod_npc_talent_template_index` (`playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder`) VALUES
+('Death Knight', 'Unholy70PvEP1BiS', @ACTION+000, '|cff00ff00|TInterface\\icons\\spell_deathknight_unholypresence:30|t|r Use Unholy PvE P1 BiS', 7, @MINLEVEL, @MAXLEVEL, 'Unholy70PvE', 'Unholy70PvE', 'TBC Phase 1', 201),
+('Death Knight', 'Unholy70PvEP1BiS', @ACTION+001, '|cff00ff00|TInterface\\icons\\spell_deathknight_unholypresence:30|t|r Use Unholy PvE P1 BiS (Talents and Glyphs only)', 6, @MINLEVEL, @MAXLEVEL, 'Unholy70PvE', 'Unholy70PvE', 'TBC Phase 1', 201);
+/*!40000 ALTER TABLE `mod_npc_talent_template_index` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `mod_npc_talent_template_gear` DISABLE KEYS */;
+INSERT INTO `mod_npc_talent_template_gear` (`playerClass`, `playerSpec`, `playerRaceMask`, `pos`, `itemEntry`, `enchant`, `socket1`, `socket2`, `socket3`, `bonusEnchant`, `prismaticEnchant`) VALUES
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 0, 32087, 3003, 2735, 2834, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 1, 29349, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 2, 30740, 2986, 2735, 2735, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 4, 30730, 2661, 2725, 2735, 2735, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 5, 28779, 0, 2725, 2731, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 6, 30739, 3012, 2725, 2725, 2725, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 7, 28608, 2939, 2725, 2735, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 8, 28795, 2647, 2731, 2725, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 9, 28824, 684, 2731, 2735, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 10, 30738, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 11, 30834, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 12, 21670, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 13, 29383, 0, 0, 0, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 14, 30729, 368, 0, 0, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 15, 28429, 2667, 0, 0, 0, 0, 0),
+('Death Knight', 'Unholy70PvEP1BiS', @RACEMASK_ALL, 17, 39208, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `mod_npc_talent_template_gear` ENABLE KEYS */;
 

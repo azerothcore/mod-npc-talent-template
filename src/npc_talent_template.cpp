@@ -7,6 +7,10 @@
 #include "ScriptedGossip.h"
 #include "SpellMgr.h"
 
+#include <algorithm>
+#include <cctype>
+#include <optional>
+
 #define DEFAULT_GOSSIP_ACTION_ENTRY 9999 // default value for gossipAction when creating new template
 
 enum TalentsAndSpells
@@ -249,8 +253,9 @@ void sTemplateNPC::LoadIndexContainer()
     for (auto* index : indexContainer)
         delete index;
     indexContainer.clear();
+    ++indexReloads;
 
-    QueryResult result = CharacterDatabase.Query("SELECT `playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `gearOverride`, `glyphOverride`, `talentOverride`, `category` FROM `mod_npc_talent_template_index` ORDER BY `gossipAction`;");
+    QueryResult result = CharacterDatabase.Query("SELECT `playerClass`, `playerSpec`, `gossipAction`, `gossipText`, `mask`, `minLevel`, `maxLevel`, `gearOverride`, `glyphOverride`, `talentOverride`, `category`, `categoryOrder` FROM `mod_npc_talent_template_index` ORDER BY `gossipAction`;");
 
     uint32 oldMSTime = getMSTime();
     uint32 count = 0;
@@ -284,6 +289,7 @@ void sTemplateNPC::LoadIndexContainer()
         if (indexTemplate->talentOverride.empty())
             indexTemplate->talentOverride = indexTemplate->playerSpec;
         indexTemplate->category = fields[10].Get<std::string>();
+        indexTemplate->categoryOrder = fields[11].Get<uint32>();
 
         indexContainer.push_back(indexTemplate);
         ++count;
@@ -428,9 +434,35 @@ void sTemplateNPC::SatisfyExtraGearRequirements(Player* player, const std::strin
     }
 }
 
-void sTemplateNPC::ApplyTemplate(Player* player, IndexTemplate* indexTemplate)
+bool sTemplateNPC::HasGearTemplate(Player* player, std::string const& sGear)
 {
-    TemplateFlags flag = indexTemplate->mask;
+    std::string playerClass = GetClassString(player);
+    return std::ranges::any_of(gearContainer, [&](GearTemplate const* gear)
+    {
+        return gear->playerClass == playerClass && gear->playerSpec == sGear && (gear->playerRaceMask & player->getRaceMask());
+    });
+}
+
+bool sTemplateNPC::HasTalentTemplate(Player* player, std::string const& sTalents)
+{
+    std::string playerClass = GetClassString(player);
+    return std::ranges::any_of(talentContainer, [&](TalentTemplate const* talent)
+    {
+        return talent->playerClass == playerClass && talent->playerSpec == sTalents;
+    });
+}
+
+bool sTemplateNPC::HasGlyphTemplate(Player* player, std::string const& sGlyphs)
+{
+    std::string playerClass = GetClassString(player);
+    return std::ranges::any_of(glyphContainer, [&](GlyphTemplate const* glyph)
+    {
+        return glyph->playerClass == playerClass && glyph->playerSpec == sGlyphs;
+    });
+}
+
+void sTemplateNPC::ApplyTemplate(Player* player, IndexTemplate* indexTemplate, TemplateFlags flag)
+{
 
     bool canApply = true;
     if ((flag & TEMPLATE_APPLY_GEAR) && sTemplateNpcMgr->IsWearingAnyGear(player))
@@ -502,161 +534,391 @@ class npc_talent_template : public CreatureScript
 public:
     npc_talent_template() : CreatureScript("npc_talent_template") {}
 
-    // Returns ordered list of unique non-empty categories eligible for this player.
+    // One selectable build: the index row shown/applied plus what may be applied.
+    struct Build
+    {
+        uint32 index;       // position in indexContainer
+        TemplateFlags mask; // union of the build's index rows, limited to existing template data
+    };
+
+    // Natural order: digit runs compare by value ("Phase 2" < "Phase 10"),
+    // everything else case-insensitively.
+    static bool CategoryLess(std::string const& a, std::string const& b)
+    {
+        size_t i = 0;
+        size_t j = 0;
+        while (i < a.size() && j < b.size())
+        {
+            if (std::isdigit(static_cast<unsigned char>(a[i])) && std::isdigit(static_cast<unsigned char>(b[j])))
+            {
+                size_t ei = i;
+                size_t ej = j;
+                while (ei < a.size() && std::isdigit(static_cast<unsigned char>(a[ei])))
+                    ++ei;
+                while (ej < b.size() && std::isdigit(static_cast<unsigned char>(b[ej])))
+                    ++ej;
+
+                // Compare the runs as numbers: skip leading zeros, then the
+                // longer run is larger, else compare digit by digit.
+                while (i + 1 < ei && a[i] == '0')
+                    ++i;
+                while (j + 1 < ej && b[j] == '0')
+                    ++j;
+                if (ei - i != ej - j)
+                    return (ei - i) < (ej - j);
+                int cmp = a.compare(i, ei - i, b, j, ej - j);
+                if (cmp != 0)
+                    return cmp < 0;
+
+                i = ei;
+                j = ej;
+                continue;
+            }
+
+            int ca = std::tolower(static_cast<unsigned char>(a[i]));
+            int cb = std::tolower(static_cast<unsigned char>(b[j]));
+            if (ca != cb)
+                return ca < cb;
+
+            ++i;
+            ++j;
+        }
+        return (a.size() - i) < (b.size() - j);
+    }
+
+    static bool IsEligible(IndexTemplate const* t, std::string const& playerClass, uint32 level)
+    {
+        return t->playerClass == playerClass && t->minLevel <= level && level <= t->maxLevel;
+    }
+
+    static uint32 CountFlags(uint32 mask)
+    {
+        return ((mask & TEMPLATE_APPLY_GEAR) ? 1 : 0) + ((mask & TEMPLATE_APPLY_TALENTS) ? 1 : 0) +
+            ((mask & TEMPLATE_APPLY_GLYPHS) ? 1 : 0);
+    }
+
+    // Unique non-empty categories eligible for this player, ordered by `categoryOrder`
+    // (lowest of the category's rows) and then by natural name. Not by gossipAction:
+    // each SQL file assigns gossipAction = MAX + 1 when applied, so re-applying an
+    // updated file would otherwise move its category to the end.
     static std::vector<std::string> GetEligibleCategories(Player* player)
     {
-        std::vector<std::string> categories;
+        std::vector<std::pair<uint32, std::string>> categories;
         std::string playerClass = sTemplateNpcMgr->GetClassString(player);
         uint32 level = player->GetLevel();
         for (auto const& t : sTemplateNpcMgr->indexContainer)
         {
-            if (t->playerClass != playerClass || t->category.empty())
+            if (t->category.empty() || !IsEligible(t, playerClass, level))
                 continue;
-            if (t->minLevel > level || level > t->maxLevel)
-                continue;
-            if (std::find(categories.begin(), categories.end(), t->category) == categories.end())
-                categories.push_back(t->category);
+            auto it = std::ranges::find(categories, t->category, &std::pair<uint32, std::string>::second);
+            if (it == categories.end())
+                categories.emplace_back(t->categoryOrder, t->category);
+            else
+                it->first = std::min(it->first, t->categoryOrder);
         }
-        return categories;
+
+        std::ranges::sort(categories, [](auto const& a, auto const& b)
+        {
+            if (a.first != b.first)
+                return a.first < b.first;
+            return CategoryLess(a.second, b.second);
+        });
+
+        std::vector<std::string> names;
+        names.reserve(categories.size());
+        for (auto const& category : categories)
+            names.push_back(category.second);
+        return names;
     }
 
-    void AddUtilityItems(Player* player)
+    // Builds of one category ("" = uncategorized, shown in the root menu), in index
+    // order. Rows sharing class + spec (e.g. a "full" and a "talents and glyphs only"
+    // row) collapse into one build; the row allowing the most is the one shown.
+    static std::vector<Build> GetBuilds(Player* player, std::string const& category)
     {
-        if (sTemplateNpcMgr->enableResetTalents || sTemplateNpcMgr->enableRemoveAllGlyphs || sTemplateNpcMgr->enableDestroyEquippedGear)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "----------------------------------------------", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_SPACER);
+        std::vector<Build> builds;
+        std::string playerClass = sTemplateNpcMgr->GetClassString(player);
+        uint32 level = player->GetLevel();
+        IndexContainer const& index = sTemplateNpcMgr->indexContainer;
+
+        for (uint32 i = 0; i < index.size(); ++i)
+        {
+            IndexTemplate const* t = index[i];
+            if (t->category != category || !IsEligible(t, playerClass, level))
+                continue;
+
+            auto it = std::ranges::find_if(builds, [&](Build const& b) { return index[b.index]->playerSpec == t->playerSpec; });
+            if (it == builds.end())
+            {
+                builds.push_back({ i, t->mask });
+                continue;
+            }
+            if (CountFlags(t->mask) > CountFlags(index[it->index]->mask))
+                it->index = i;
+            it->mask = static_cast<TemplateFlags>(it->mask | t->mask);
+        }
+
+        // Only offer parts that actually have template data.
+        for (Build& build : builds)
+        {
+            IndexTemplate const* t = index[build.index];
+            uint32 mask = build.mask;
+            if (!sTemplateNpcMgr->HasGearTemplate(player, t->gearOverride))
+                mask &= ~TEMPLATE_APPLY_GEAR;
+            if (!sTemplateNpcMgr->HasTalentTemplate(player, t->talentOverride))
+                mask &= ~TEMPLATE_APPLY_TALENTS;
+            if (!sTemplateNpcMgr->HasGlyphTemplate(player, t->glyphOverride))
+                mask &= ~TEMPLATE_APPLY_GLYPHS;
+            build.mask = static_cast<TemplateFlags>(mask);
+        }
+        std::erase_if(builds, [](Build const& b) { return b.mask == 0; });
+        return builds;
+    }
+
+    // The build behind an index position, re-validated against the player (the menu
+    // may be stale after a `.templatenpc reload` or a level-up).
+    static std::optional<Build> FindBuild(Player* player, uint32 index)
+    {
+        IndexContainer const& container = sTemplateNpcMgr->indexContainer;
+        if (index >= container.size())
+            return std::nullopt;
+
+        for (Build const& build : GetBuilds(player, container[index]->category))
+            if (build.index == index)
+                return build;
+        return std::nullopt;
+    }
+
+    static bool HasResetOptions()
+    {
+        return sTemplateNpcMgr->enableResetTalents || sTemplateNpcMgr->enableRemoveAllGlyphs || sTemplateNpcMgr->enableDestroyEquippedGear;
+    }
+
+    // Senders carry the index reload count above the low byte, so a menu opened
+    // before a `.templatenpc reload` can't select a row that has since moved.
+    static uint32 Sender(uint32 kind)
+    {
+        return kind | (sTemplateNpcMgr->indexReloads << 8);
+    }
+
+    static void AddBackItem(Player* player, uint32 sender, uint32 action)
+    {
+        AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cffaaaaaa<< Back|r", Sender(sender), action);
+    }
+
+    // Root: categories, uncategorized builds, then the reset sub-menu.
+    static void ShowRootMenu(Player* player, Creature* creature)
+    {
+        std::vector<std::string> categories = GetEligibleCategories(player);
+        for (uint32 i = 0; i < static_cast<uint32>(categories.size()); ++i)
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ccff>> " + categories[i] + "|r", Sender(SENDER_CATEGORY), i);
+
+        for (Build const& build : GetBuilds(player, ""))
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, sTemplateNpcMgr->indexContainer[build.index]->gossipText, Sender(SENDER_BUILD), build.index);
+
+        if (HasResetOptions())
+        {
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "----------------------------------------------", Sender(SENDER_MAIN), GOSSIP_ACTION_SPACER);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30:30|t|r Reset...", Sender(SENDER_MAIN), GOSSIP_ACTION_RESET_MENU);
+        }
+
+        SendGossipMenuFor(player, creature->GetEntry(), creature->GetGUID());
+    }
+
+    // Category: one entry per build.
+    static void ShowCategoryMenu(Player* player, Creature* creature, uint32 categoryIndex)
+    {
+        std::vector<std::string> categories = GetEligibleCategories(player);
+        if (categoryIndex >= categories.size())
+        {
+            ShowRootMenu(player, creature);
+            return;
+        }
+
+        for (Build const& build : GetBuilds(player, categories[categoryIndex]))
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, sTemplateNpcMgr->indexContainer[build.index]->gossipText, Sender(SENDER_BUILD), build.index);
+
+        AddBackItem(player, SENDER_MAIN, GOSSIP_ACTION_ROOT);
+        SendGossipMenuFor(player, creature->GetEntry(), creature->GetGUID());
+    }
+
+    // Build: what to apply. Each choice is limited to what the build has; choices
+    // that would repeat an earlier one (e.g. "talents only" for a talents-only
+    // build) are skipped.
+    static void ShowBuildMenu(Player* player, Creature* creature, uint32 index)
+    {
+        std::optional<Build> build = FindBuild(player, index);
+        if (!build)
+        {
+            ShowRootMenu(player, creature);
+            return;
+        }
+
+        struct Choice
+        {
+            uint32 flags;
+            char const* text;
+        };
+        static constexpr Choice choices[] =
+        {
+            { TEMPLATE_APPLY_ALL,                             "|cff00ff00|TInterface\\icons\\Achievement_Level_80:30:30|t|r Apply everything" },
+            { TEMPLATE_APPLY_GEAR,                            "|cff00ff00|TInterface\\icons\\INV_Chest_Plate16:30:30|t|r Gear only" },
+            { TEMPLATE_APPLY_TALENTS | TEMPLATE_APPLY_GLYPHS, "|cff00ff00|TInterface\\icons\\INV_Misc_Book_11:30:30|t|r Talents and glyphs" },
+            { TEMPLATE_APPLY_TALENTS,                         "|cff00ff00|TInterface\\icons\\Ability_Marksmanship:30:30|t|r Talents only" },
+            { TEMPLATE_APPLY_GLYPHS,                          "|cff00ff00|TInterface\\icons\\INV_Inscription_Tradeskill01:30:30|t|r Glyphs only" },
+        };
+
+        std::vector<uint32> shown;
+        for (Choice const& choice : choices)
+        {
+            uint32 flags = choice.flags & build->mask;
+            if (!flags || (choice.flags != TEMPLATE_APPLY_ALL && flags != choice.flags))
+                continue;
+            if (std::ranges::find(shown, flags) != shown.end())
+                continue;
+            shown.push_back(flags);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, choice.text, Sender(SENDER_APPLY_BASE + flags), index);
+        }
+
+        std::string const& category = sTemplateNpcMgr->indexContainer[index]->category;
+        std::vector<std::string> categories = GetEligibleCategories(player);
+        auto it = std::ranges::find(categories, category);
+        if (category.empty() || it == categories.end())
+            AddBackItem(player, SENDER_MAIN, GOSSIP_ACTION_ROOT);
+        else
+            AddBackItem(player, SENDER_CATEGORY, static_cast<uint32>(std::distance(categories.begin(), it)));
+
+        SendGossipMenuFor(player, creature->GetEntry(), creature->GetGUID());
+    }
+
+    // Reset: everything at once, or one part. Each option follows its config switch.
+    static void ShowResetMenu(Player* player, Creature* creature)
+    {
+        bool hunter = player->getClass() == CLASS_HUNTER;
+        uint32 options = (sTemplateNpcMgr->enableResetTalents ? (hunter ? 2 : 1) : 0) +
+            (sTemplateNpcMgr->enableRemoveAllGlyphs ? 1 : 0) + (sTemplateNpcMgr->enableDestroyEquippedGear ? 1 : 0);
+
+        if (options > 1)
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_Holy_BorrowedTime:30:30|t|r Reset everything", Sender(SENDER_RESET), GOSSIP_ACTION_RESET_ALL, "Are you sure you want to reset everything listed below?", 0, false);
 
         if (sTemplateNpcMgr->enableResetTalents)
         {
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30:30|t|r Reset Talents", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_RESET_TALENTS, "Are you sure you want to reset your talents?", 0, false);
-            if (player->getClass() == CLASS_HUNTER)
-                AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_hunter_beasttaming:30:30|t|r Reset Pet Talents", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_RESET_PET_TALENTS, "Are you sure you want to reset your pet's talents?", 0, false);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Trade_Engineering:30:30|t|r Reset Talents", Sender(SENDER_RESET), GOSSIP_ACTION_RESET_TALENTS, "Are you sure you want to reset your talents?", 0, false);
+            if (hunter)
+                AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_hunter_beasttaming:30:30|t|r Reset Pet Talents", Sender(SENDER_RESET), GOSSIP_ACTION_RESET_PET_TALENTS, "Are you sure you want to reset your pet's talents?", 0, false);
         }
 
         if (sTemplateNpcMgr->enableRemoveAllGlyphs)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Remove all glyphs", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_RESET_REMOVE_GLYPHS, "Are you sure you want to remove all your glyphs?", 0, false);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\Spell_ChargeNegative:30|t|r Remove all glyphs", Sender(SENDER_RESET), GOSSIP_ACTION_RESET_REMOVE_GLYPHS, "Are you sure you want to remove all your glyphs?", 0, false);
 
         if (sTemplateNpcMgr->enableDestroyEquippedGear)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_vehicle_launchplayer:30|t|r Destroy my equipped gear", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_RESET_REMOVE_EQUIPPED_GEAR, "Are you sure you want to destroy all your equipped gear?", 0, false);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cff00ff00|TInterface\\icons\\ability_vehicle_launchplayer:30:30|t|r Destroy my equipped gear", Sender(SENDER_RESET), GOSSIP_ACTION_RESET_REMOVE_EQUIPPED_GEAR, "Are you sure you want to destroy all your equipped gear?", 0, false);
+
+        AddBackItem(player, SENDER_MAIN, GOSSIP_ACTION_ROOT);
+        SendGossipMenuFor(player, creature->GetEntry(), creature->GetGUID());
+    }
+
+    static void ResetTalents(Player* player)
+    {
+        player->resetTalents(true);
+        player->SendTalentsInfoData(false);
+        player->GetSession()->SendAreaTriggerMessage(LANG_RESET_TALENTS);
+    }
+
+    static void ResetPetTalents(Player* player)
+    {
+        player->ResetPetTalents();
+        player->GetSession()->SendAreaTriggerMessage(LANG_RESET_PET_TALENTS);
+    }
+
+    static void RemoveGlyphs(Player* player)
+    {
+        sTemplateNpcMgr->RemoveAllGlyphs(player);
+        player->GetSession()->SendAreaTriggerMessage(player->GetSession()->GetModuleString(MODULE_STRING, SUCCESS_NPC_TALENT_TEMPLATE_REMOVED_GLYPHS)->c_str());
+    }
+
+    static void DestroyEquippedGear(Player* player)
+    {
+        for (uint8 i = EQUIPMENT_SLOT_START; i < EQUIPMENT_SLOT_END; ++i)
+        {
+            // Setting state to CHANGED is required here to avoid inventory save errors after using DestroyItem and EquipItem.
+            // The error occurs because the item slot information is not updated correctly
+            if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
+                item->SetState(ITEM_CHANGED, player); // fixes
+            player->DestroyItem(INVENTORY_SLOT_BAG_0, i, true);
+        }
+        player->SaveToDB(false, false);
+        player->GetSession()->SendAreaTriggerMessage(player->GetSession()->GetModuleString(MODULE_STRING, SUCCESS_NPC_TALENT_TEMPLATE_DESTROYED_EQUIPPED_GEAR)->c_str());
+    }
+
+    static void HandleReset(Player* player, uint32 action)
+    {
+        bool all = action == GOSSIP_ACTION_RESET_ALL;
+
+        if (sTemplateNpcMgr->enableResetTalents && (all || action == GOSSIP_ACTION_RESET_TALENTS))
+            ResetTalents(player);
+
+        if (sTemplateNpcMgr->enableResetTalents && player->getClass() == CLASS_HUNTER && (all || action == GOSSIP_ACTION_RESET_PET_TALENTS))
+            ResetPetTalents(player);
+
+        if (sTemplateNpcMgr->enableRemoveAllGlyphs && (all || action == GOSSIP_ACTION_RESET_REMOVE_GLYPHS))
+            RemoveGlyphs(player);
+
+        if (sTemplateNpcMgr->enableDestroyEquippedGear && (all || action == GOSSIP_ACTION_RESET_REMOVE_EQUIPPED_GEAR))
+            DestroyEquippedGear(player);
     }
 
     bool OnGossipHello(Player* player, Creature* creature) override
     {
-        std::string playerClass = sTemplateNpcMgr->GetClassString(player);
-        uint32 level = player->GetLevel();
-
-        // One navigation entry per unique category (shown first)
-        std::vector<std::string> categories = GetEligibleCategories(player);
-        for (uint32 i = 0; i < static_cast<uint32>(categories.size()); ++i)
-            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1,
-                "|cff00ccff>> " + categories[i] + "|r",
-                GOSSIP_SENDER_MAIN, GOSSIP_ACTION_CATEGORY_BASE + i);
-
-        // Uncategorized entries shown directly in the root menu
-        for (auto const& indexTemplate : sTemplateNpcMgr->indexContainer)
-            if (indexTemplate->playerClass == playerClass &&
-                indexTemplate->minLevel <= level &&
-                level <= indexTemplate->maxLevel &&
-                indexTemplate->category.empty())
-                AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, indexTemplate->gossipText, GOSSIP_SENDER_MAIN, indexTemplate->gossipAction);
-
-        AddUtilityItems(player);
-
-        SendGossipMenuFor(player, creature->GetEntry(), creature->GetGUID());
+        ShowRootMenu(player, creature);
         return true;
     }
 
-    bool OnGossipSelect(Player* player, Creature* creature, uint32 /*uiSender*/, uint32 uiAction) override
+    bool OnGossipSelect(Player* player, Creature* creature, uint32 sender, uint32 action) override
     {
         if (!player || !creature)
             return false;
 
         player->PlayerTalkClass->ClearMenus();
 
-        // Category submenu: rebuild menu with specs belonging to the selected category
-        if (uiAction >= GOSSIP_ACTION_CATEGORY_BASE)
+        if ((sender & ~0xFFu) != Sender(0))
         {
-            uint32 categoryIndex = uiAction - GOSSIP_ACTION_CATEGORY_BASE;
-            std::vector<std::string> categories = GetEligibleCategories(player);
-            if (categoryIndex < static_cast<uint32>(categories.size()))
-            {
-                const std::string& category = categories[categoryIndex];
-                std::string playerClass = sTemplateNpcMgr->GetClassString(player);
-                uint32 level = player->GetLevel();
-                for (auto const& indexTemplate : sTemplateNpcMgr->indexContainer)
-                    if (indexTemplate->playerClass == playerClass &&
-                        indexTemplate->minLevel <= level &&
-                        level <= indexTemplate->maxLevel &&
-                        indexTemplate->category == category)
-                        AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, indexTemplate->gossipText, GOSSIP_SENDER_MAIN, indexTemplate->gossipAction);
-
-                AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, "|cffaaaaaa<< Back|r", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_BACK);
-                SendGossipMenuFor(player, creature->GetEntry(), creature->GetGUID());
-            }
-            player->UpdateSkillsForLevel();
+            ShowRootMenu(player, creature);
             return true;
         }
+        sender &= 0xFF;
 
-        // Back arrow: return to root menu
-        if (uiAction == GOSSIP_ACTION_BACK)
+        if (sender >= SENDER_APPLY_BASE)
         {
-            OnGossipHello(player, creature);
-            player->UpdateSkillsForLevel();
-            return true;
+            // Apply only what both the choice and the build allow.
+            std::optional<Build> build = FindBuild(player, action);
+            uint32 flags = (sender - SENDER_APPLY_BASE) & (build ? build->mask : 0);
+            if (flags)
+                sTemplateNpcMgr->ApplyTemplate(player, sTemplateNpcMgr->indexContainer[action], static_cast<TemplateFlags>(flags));
+            CloseGossipMenuFor(player);
         }
-
-        // Spec template actions
-        for (IndexTemplate* const& indexTemplate : sTemplateNpcMgr->indexContainer)
-            if (indexTemplate->gossipAction == uiAction)
-            {
-                sTemplateNpcMgr->ApplyTemplate(player, indexTemplate);
-                CloseGossipMenuFor(player);
-                player->UpdateSkillsForLevel();
-                return true;
-            }
-
-        // Utility actions
-        switch (uiAction)
+        else
         {
-            case GOSSIP_ACTION_SPACER:
-                OnGossipHello(player, creature);
-                break;
-
-            case GOSSIP_ACTION_RESET_REMOVE_GLYPHS:
-                sTemplateNpcMgr->RemoveAllGlyphs(player);
-                player->GetSession()->SendAreaTriggerMessage(player->GetSession()->GetModuleString(MODULE_STRING, SUCCESS_NPC_TALENT_TEMPLATE_REMOVED_GLYPHS)->c_str());
-                CloseGossipMenuFor(player);
-                break;
-
-            case GOSSIP_ACTION_RESET_TALENTS:
-                player->resetTalents(true);
-                player->SendTalentsInfoData(false);
-                player->GetSession()->SendAreaTriggerMessage(LANG_RESET_TALENTS);
-                CloseGossipMenuFor(player);
-                break;
-
-            case GOSSIP_ACTION_RESET_PET_TALENTS:
-                player->ResetPetTalents();
-                player->GetSession()->SendAreaTriggerMessage(LANG_RESET_PET_TALENTS);
-                CloseGossipMenuFor(player);
-                break;
-
-            case GOSSIP_ACTION_RESET_REMOVE_EQUIPPED_GEAR:
-                for (uint8 i = EQUIPMENT_SLOT_START; i < EQUIPMENT_SLOT_END; ++i)
-                {
-                    // Setting state to CHANGED is required here to avoid inventory save errors after using DestroyItem and EquipItem.
-                    // The error occurs because the item slot information is not updated correctly
-                    if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, i))
-                        item->SetState(ITEM_CHANGED, player); // fixes
-                    player->DestroyItem(INVENTORY_SLOT_BAG_0, i, true);
-                }
-                player->SaveToDB(false, false);
-                player->GetSession()->SendAreaTriggerMessage(player->GetSession()->GetModuleString(MODULE_STRING, SUCCESS_NPC_TALENT_TEMPLATE_DESTROYED_EQUIPPED_GEAR)->c_str());
-                CloseGossipMenuFor(player);
-                break;
-
-            default:
-                CloseGossipMenuFor(player);
-                break;
+            switch (sender)
+            {
+                case SENDER_CATEGORY:
+                    ShowCategoryMenu(player, creature, action);
+                    break;
+                case SENDER_BUILD:
+                    ShowBuildMenu(player, creature, action);
+                    break;
+                case SENDER_RESET:
+                    HandleReset(player, action);
+                    CloseGossipMenuFor(player);
+                    break;
+                case SENDER_MAIN:
+                default:
+                    if (action == GOSSIP_ACTION_RESET_MENU && HasResetOptions())
+                        ShowResetMenu(player, creature);
+                    else
+                        ShowRootMenu(player, creature);
+                    break;
+            }
         }
 
         player->UpdateSkillsForLevel();
